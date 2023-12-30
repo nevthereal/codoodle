@@ -52,7 +52,9 @@
 		"@libsql/client": "^0.4.0-pre.5",
 		"dotenv": "^16.3.1",
 		"drizzle-orm": "^0.29.2",
+		"drizzle-zod": "^0.5.1",
 		"highlight.js": "11.9.0",
-		"lucia": "^2.7.6"
+		"lucia": "^2.7.6",
+		"zod": "^3.22.4"
 	}
 }
