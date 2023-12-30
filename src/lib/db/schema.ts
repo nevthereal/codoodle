@@ -18,7 +18,7 @@ export const postsTable = sqliteTable('posts', {
 	title: text('title', { length: 255 }),
 	body: text('body', { length: 255 }),
 	likes: integer('likes'),
-	createdAt: integer('createdAt', { mode: 'timestamp' })
+	createdAt: integer('createdAt', { mode: 'timestamp_ms' })
 });
 
 export const postRelation = relations(postsTable, ({ one }) => ({
