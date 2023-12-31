@@ -4,7 +4,7 @@ import { relations } from 'drizzle-orm';
 // users and auth
 export const usersTable = sqliteTable('users', {
 	id: text('id').primaryKey().notNull(),
-	username: text('username', { length: 255 }).notNull(),
+	username: text('username', { length: 255 }).notNull().unique(),
 	email: text('email', { length: 255 }).notNull().unique(),
 	admin: integer('admin', { mode: 'boolean' }).default(false)
 });

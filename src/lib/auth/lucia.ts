@@ -1,11 +1,12 @@
 import { lucia } from 'lucia';
-import { web } from 'lucia/middleware';
+import { sveltekit } from 'lucia/middleware';
 import { libsql } from '@lucia-auth/adapter-sqlite';
 import { client } from '../db/db';
+import { dev } from '$app/environment';
 
 export const auth = lucia({
-	env: 'DEV',
-	middleware: web(),
+	env: dev ? 'DEV' : 'PROD',
+	middleware: sveltekit(),
 	sessionCookie: {
 		expires: false
 	},
@@ -21,3 +22,5 @@ export const auth = lucia({
 		};
 	}
 });
+
+export type Auth = typeof auth;

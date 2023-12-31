@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1703967194849,
-      "tag": "0000_sudden_kate_bishop",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1704005534221,
-      "tag": "0001_glamorous_cobalt_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1704016316260,
-      "tag": "0002_tearful_ego",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1704018848464,
-      "tag": "0003_massive_polaris",
+      "when": 1704032668330,
+      "tag": "0000_hesitant_korath",
       "breakpoints": true
     }
   ]
