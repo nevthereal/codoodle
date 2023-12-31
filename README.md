@@ -1,4 +1,4 @@
-# Blog (v2 kinda)
+# codoodle
 
 A SvelteKit blog using Drizzle + Turso
 

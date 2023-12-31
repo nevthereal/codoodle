@@ -5,7 +5,8 @@ import { relations } from 'drizzle-orm';
 export const usersTable = sqliteTable('users', {
 	id: text('id').primaryKey().notNull(),
 	username: text('username', { length: 255 }).notNull(),
-	email: text('email', { length: 255 }).notNull().unique()
+	email: text('email', { length: 255 }).notNull().unique(),
+	admin: integer('admin', { mode: 'boolean' }).default(false)
 });
 
 export const sessionsTable = sqliteTable('sessions', {
@@ -32,15 +33,14 @@ export const userRelation = relations(usersTable, ({ many }) => ({
 // posts
 export const postsTable = sqliteTable('posts', {
 	id: text('id').primaryKey(),
-	authorId: text('author_id'),
-	title: text('title', { length: 255 }),
-	body: text('body', { length: 255 }),
-	likes: integer('likes'),
-	createdAt: integer('created_at', { mode: 'timestamp_ms' })
+	authorId: text('author_id').notNull(),
+	title: text('title', { length: 255 }).notNull(),
+	body: text('body', { length: 255 }).notNull(),
+	createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull()
 });
 
 export const postRelation = relations(postsTable, ({ one }) => ({
-	post: one(usersTable, {
+	author: one(usersTable, {
 		fields: [postsTable.authorId],
 		references: [usersTable.id]
 	})
