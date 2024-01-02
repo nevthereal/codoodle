@@ -5,7 +5,9 @@
 
 <AppShell>
 	<svelte:fragment slot="header">
-		<header class="p-6 flex justify-between items-center bg-primary-500 rounded-b-3xl">
+		<header
+			class="p-6 flex justify-between items-center bg-primary-500 rounded-bl-container-token rounded-br-container-token"
+		>
 			<a href="/" class="btn">
 				<h1 class="h1">codoodle</h1>
 			</a>
@@ -14,11 +16,13 @@
 			</a>
 		</header>
 	</svelte:fragment>
-
-	<slot />
-
+	<main class="p-8">
+		<slot />
+	</main>
 	<svelte:fragment slot="footer">
-		<footer class="p-6 font-bold border-t-2 border-primary-500 rounded-t-3xl">
+		<footer
+			class="p-6 font-bold border-t-2 border-primary-500 rounded-tl-container-token rounded-tr-container-token"
+		>
 			<div class="mx-32 grid grid-cols-2">
 				<div class="m-auto">
 					<h2 class="h2">codoodle.</h2>

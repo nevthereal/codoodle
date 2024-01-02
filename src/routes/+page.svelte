@@ -11,11 +11,9 @@
 	>
 </div>
 
-<main class="p-16">
-	<h1 class="h1">Latest posts:</h1>
-	<div class="flex flex-col gap-4">
-		{#each posts as post}
-			<Post {post} />
-		{/each}
-	</div>
-</main>
+<h1 class="h1">Latest posts:</h1>
+<div class="flex flex-col gap-4">
+	{#each posts as post}
+		<Post {post} />
+	{/each}
+</div>
