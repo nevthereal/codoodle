@@ -11,6 +11,9 @@ dependencies:
   '@libsql/client':
     specifier: 0.4.0-pre.5
     version: 0.4.0-pre.5
+  '@lucia-auth/adapter-sqlite':
+    specifier: ^2.0.1
+    version: 2.0.1(@libsql/client@0.4.0-pre.5)(lucia@2.7.6)
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -23,6 +26,9 @@ dependencies:
   highlight.js:
     specifier: 11.9.0
     version: 11.9.0
+  lucia:
+    specifier: ^2.7.6
+    version: 2.7.6
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -2546,6 +2552,22 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
+
+  /@lucia-auth/adapter-sqlite@2.0.1(@libsql/client@0.4.0-pre.5)(lucia@2.7.6):
+    resolution: {integrity: sha512-yc7XQ4X3sWG1gyUGHqaXipJIkmvB4MOgJypnSMWy7Vjhn3AOCM2xw51xTs+dGpLOQIn2Laomg9xpmDM2/9tgqQ==}
+    peerDependencies:
+      '@libsql/client': ^0.3.0
+      better-sqlite3: 8.x - 9.x
+      lucia: ^2.0.0
+    peerDependenciesMeta:
+      '@libsql/client':
+        optional: true
+      better-sqlite3:
+        optional: true
+    dependencies:
+      '@libsql/client': 0.4.0-pre.5
+      lucia: 2.7.6
+    dev: false
 
   /@neon-rs/load@0.0.4:
     resolution: {integrity: sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw==}
@@ -5663,6 +5685,10 @@ packages:
     dependencies:
       es5-ext: 0.10.62
     dev: true
+
+  /lucia@2.7.6:
+    resolution: {integrity: sha512-xyRkNtevf0DUM4nGC6F2nCFFNphZ1qqBrfWwAgPa9zkpQsVJ/hN32I8zAY+pm+ZKWPPS/C/Sqqmo2LreSCzg7w==}
+    dev: false
 
   /magic-string@0.30.5:
     resolution: {integrity: sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==}

@@ -1,7 +1,7 @@
 <script>
 	import ProfileNav from '$lib/components/ProfileNav.svelte';
 	import { AppShell } from '@skeletonlabs/skeleton';
-	let signedIn = false;
+	let signedIn = true;
 </script>
 
 {#if signedIn}

@@ -1,5 +1,5 @@
-import { db } from '$lib/db/db';
-import { postsTable } from '$lib/db/schema';
+import { db } from '$lib/server/db/db';
+import { postsTable } from '$lib/server/db/schema';
 import { desc } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 
