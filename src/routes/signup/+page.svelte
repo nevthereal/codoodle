@@ -1,38 +1,67 @@
 <script lang="ts">
-	export let form;
+	import type { PageData } from './$types';
+	import { superForm } from 'sveltekit-superforms/client';
+
+	export let data: PageData;
+	const { form, enhance, errors } = superForm(data.form, {
+		applyAction: true,
+		invalidateAll: true,
+		resetForm: false
+	});
 </script>
 
-<div class="m-16">
+<div class="max-w-[80%] md:max-w-[50%] mx-auto">
 	<h1 class="h1 mb-4">Sign Up</h1>
-	<form method="POST" class="flex flex-col gap-4 text-black">
-		<input class="rounded-2xl" id="email" name="email" type="email" placeholder="Email" />
-		<input class="rounded-2xl" id="username" name="username" type="text" placeholder="Username" />
+	<form use:enhance method="POST" class="flex flex-col gap-4">
 		<input
-			class="rounded-2xl"
+			class="rounded-token p-2 text-black"
+			id="email"
+			name="email"
+			type="text"
+			placeholder="Email"
+			bind:value={$form.email}
+		/>
+		{#if $errors.email}
+			<span class="text-error-500 font-semibold">{$errors.email}</span>
+		{/if}
+		<input
+			class="rounded-token p-2 text-black"
+			id="username"
+			name="username"
+			type="text"
+			placeholder="Username"
+			bind:value={$form.username}
+		/>
+		{#if $errors.username}
+			<span class="text-error-500 font-semibold">{$errors.username}</span>
+		{/if}
+		<input
+			class="rounded-token p-2 text-black"
 			id="password"
 			name="password"
 			type="password"
 			placeholder="Password"
+			bind:value={$form.password}
 		/>
+		{#if $errors.password}
+			<span class="text-error-500 font-semibold">{$errors.password}</span>
+		{/if}
 		<input
-			class="rounded-2xl"
+			class="rounded-token p-2 text-black"
 			id="confirmPassword"
 			name="confirmPassword"
 			type="password"
 			placeholder="Confirm Password"
+			bind:value={$form.confirmPassword}
 		/>
+		{#if $errors.confirmPassword}
+			<span class="text-error-500 font-semibold">{$errors.confirmPassword}</span>
+		{/if}
 		<button
 			type="submit"
-			class="bg-primary-500 mx-auto p-2 rounded-2xl text-xl font-semibold text-white"
+			class="variant-filled-primary mx-auto btn rounded-token text-xl font-semibold text-white"
 			>Sign Up</button
 		>
-		<div>
-			{#if form?.errors}
-				{#each form?.errors as err}
-					<p class="text-red-500">{err.message}</p>
-				{/each}
-			{/if}
-		</div>
 	</form>
 
 	<p>or</p>

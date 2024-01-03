@@ -3,7 +3,6 @@
 </script>
 
 <nav class="rounded-container-token bg-surface-500 p-6 flex flex-col gap-2 h-full">
-	<h1 class="h1">Profile</h1>
 	<ul>
 		<li>
 			<a class="btn" href="/profile">Overview</a>

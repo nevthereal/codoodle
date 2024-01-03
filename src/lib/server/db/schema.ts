@@ -23,7 +23,7 @@ export const keysTable = sqliteTable('keys', {
 	userId: text('user_id')
 		.notNull()
 		.references(() => usersTable.id),
-	hashedPassword: text('hashed_password')
+	hashedPassword: text('hashed_password').notNull()
 });
 
 export const userRelation = relations(usersTable, ({ many }) => ({
