@@ -14,6 +14,6 @@
 <h1 class="h1">Latest posts:</h1>
 <div class="flex flex-col gap-4">
 	{#each posts as post}
-		<Post {post} />
+		<Post {post} deletePerm={false} />
 	{/each}
 </div>
