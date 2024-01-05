@@ -1,7 +1,7 @@
 CREATE TABLE `keys` (
-	`id` text PRIMARY KEY NOT NULL,
-	`user_id` text NOT NULL,
-	`hashed_password` text,
+	`id` text(255) PRIMARY KEY NOT NULL,
+	`user_id` text(15) NOT NULL,
+	`hashed_password` text(255) NOT NULL,
 	FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
@@ -14,15 +14,15 @@ CREATE TABLE `posts` (
 );
 --> statement-breakpoint
 CREATE TABLE `sessions` (
-	`id` text PRIMARY KEY NOT NULL,
-	`user_id` text NOT NULL,
+	`id` text(127) PRIMARY KEY NOT NULL,
+	`user_id` text(15) NOT NULL,
 	`active_expires` blob NOT NULL,
 	`idle_expires` blob NOT NULL,
 	FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `users` (
-	`id` text PRIMARY KEY NOT NULL,
+	`id` text(15) PRIMARY KEY NOT NULL,
 	`username` text(255) NOT NULL,
 	`email` text(255) NOT NULL,
 	`admin` integer DEFAULT false

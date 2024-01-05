@@ -51,10 +51,12 @@
 	"dependencies": {
 		"@floating-ui/dom": "1.5.3",
 		"@libsql/client": "0.4.0-pre.5",
+		"@lucia-auth/adapter-sqlite": "^2.0.1",
 		"dotenv": "^16.3.1",
 		"drizzle-orm": "^0.29.2",
 		"drizzle-zod": "^0.5.1",
 		"highlight.js": "11.9.0",
+		"lucia": "^2.7.6",
 		"zod": "^3.22.4",
 		"zod-form-data": "^2.0.2"
 	}

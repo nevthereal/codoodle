@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1704032668330,
-      "tag": "0000_hesitant_korath",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1704225460784,
-      "tag": "0001_first_kitty_pryde",
+      "when": 1704309721561,
+      "tag": "0000_majestic_hercules",
       "breakpoints": true
     }
   ]

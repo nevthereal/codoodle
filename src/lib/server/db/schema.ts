@@ -3,15 +3,15 @@ import { relations } from 'drizzle-orm';
 
 // users and auth
 export const usersTable = sqliteTable('users', {
-	id: text('id').primaryKey().notNull(),
+	id: text('id', { length: 15 }).primaryKey().notNull(),
 	username: text('username', { length: 255 }).notNull().unique(),
 	email: text('email', { length: 255 }).notNull().unique(),
 	admin: integer('admin', { mode: 'boolean' }).default(false)
 });
 
 export const sessionsTable = sqliteTable('sessions', {
-	id: text('id').primaryKey().notNull(),
-	userId: text('user_id')
+	id: text('id', { length: 127 }).primaryKey().notNull(),
+	userId: text('user_id', { length: 15 })
 		.notNull()
 		.references(() => usersTable.id),
 	activeExpires: blob('active_expires', { mode: 'bigint' }).notNull(),
@@ -19,11 +19,11 @@ export const sessionsTable = sqliteTable('sessions', {
 });
 
 export const keysTable = sqliteTable('keys', {
-	id: text('id').primaryKey().notNull(),
-	userId: text('user_id')
+	id: text('id', { length: 255 }).primaryKey().notNull(),
+	userId: text('user_id', { length: 15 })
 		.notNull()
 		.references(() => usersTable.id),
-	hashedPassword: text('hashed_password').notNull()
+	hashedPassword: text('hashed_password', { length: 255 }).notNull()
 });
 
 export const userRelation = relations(usersTable, ({ many }) => ({

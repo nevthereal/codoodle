@@ -7,3 +7,21 @@ declare namespace App {
 	// interface Error {}
 	// interface Platform {}
 }
+declare global {
+	namespace Lucia {
+		type Auth = import('$lib/server/lucia').Auth;
+		type DatabaseUserAttributes = {
+			username: string;
+			email: string;
+			admin: boolean;
+		};
+		type DatabaseSessionAttributes = {};
+	}
+	namespace App {
+		interface Locals {
+			auth: import('lucia').AuthRequest;
+		}
+	}
+}
+
+export {};
