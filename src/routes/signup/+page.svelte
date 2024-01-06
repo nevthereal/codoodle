@@ -59,7 +59,7 @@
 		{/if}
 		<button
 			type="submit"
-			class="variant-filled-primary mx-auto btn rounded-token text-xl font-semibold text-white"
+			class="variant-ghost-primary mx-auto btn rounded-token text-xl font-semibold text-white"
 			>Sign Up</button
 		>
 	</form>

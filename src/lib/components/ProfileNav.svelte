@@ -14,7 +14,7 @@
 			<a class="btn" href="/profile/edit">Edit</a>
 		</li>
 		<li>
-			<a href="/signout" class="btn variant-ghost-primary">Sign out</a>
+			<a href="/signout" class="btn variant-ghost-error">Sign out</a>
 		</li>
 	</ul>
 </nav>
