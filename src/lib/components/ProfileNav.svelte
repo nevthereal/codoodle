@@ -13,6 +13,8 @@
 		<li>
 			<a class="btn" href="/profile/edit">Edit</a>
 		</li>
-		<li><button class="btn variant-filled-error">Log out</button></li>
+		<li>
+			<a href="/signout" class="btn variant-ghost-primary">Sign out</a>
+		</li>
 	</ul>
 </nav>
