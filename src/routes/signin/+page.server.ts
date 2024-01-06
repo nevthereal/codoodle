@@ -1,10 +1,7 @@
 import { z } from 'zod';
 import type { Actions, PageServerLoad } from './$types';
-import { setError, superValidate, message } from 'sveltekit-superforms/server';
-import { error, fail, redirect } from '@sveltejs/kit';
-import { db } from '$lib/server/db/db';
-import { eq } from 'drizzle-orm';
-import { usersTable } from '$lib/server/db/schema';
+import { superValidate } from 'sveltekit-superforms/server';
+import { fail, redirect } from '@sveltejs/kit';
 import { auth } from '$lib/server/auth/lucia';
 
 const signUpSchema = z.object({
@@ -27,8 +24,13 @@ export const actions = {
 		const form = await superValidate(request, signUpSchema);
 		if (!form.valid) return fail(400, { form });
 		try {
-			const key = auth.useKey('email', form.data.username, form.data.password);
+			const key = await auth.useKey('email', form.data.username, form.data.password);
+			const session = await auth.createSession({
+				userId: key.userId,
+				attributes: {}
+			});
 			locals.auth.setSession(session);
+			console.log(session);
 		} catch (err) {}
 	}
 } satisfies Actions;
