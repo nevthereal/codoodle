@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { Actions, PageServerLoad } from './$types';
 import { setError, superValidate, message } from 'sveltekit-superforms/server';
-import { error, fail, redirect } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { db } from '$lib/server/db/db';
 import { eq } from 'drizzle-orm';
 import { usersTable } from '$lib/server/db/schema';

@@ -14,7 +14,6 @@
 	<h1 class="h1 mb-4">Sign In</h1>
 	<form use:enhance method="POST" class="flex flex-col gap-4">
 		<input
-			class="rounded-token p-2 text-black"
 			id="username"
 			name="username"
 			type="text"
@@ -25,7 +24,6 @@
 			<span class="text-error-500 font-semibold">{$errors.username}</span>
 		{/if}
 		<input
-			class="rounded-token p-2 text-black"
 			id="password"
 			name="password"
 			type="password"

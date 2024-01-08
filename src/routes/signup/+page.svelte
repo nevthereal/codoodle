@@ -13,19 +13,11 @@
 <div class="max-w-[80%] md:max-w-[50%] mx-auto">
 	<h1 class="h1 mb-4">Sign Up</h1>
 	<form use:enhance method="POST" class="flex flex-col gap-4">
-		<input
-			class="rounded-token p-2 text-black"
-			id="email"
-			name="email"
-			type="text"
-			placeholder="Email"
-			bind:value={$form.email}
-		/>
+		<input id="email" name="email" type="text" placeholder="Email" bind:value={$form.email} />
 		{#if $errors.email}
 			<span class="text-error-500 font-semibold">{$errors.email}</span>
 		{/if}
 		<input
-			class="rounded-token p-2 text-black"
 			id="username"
 			name="username"
 			type="text"
@@ -36,7 +28,6 @@
 			<span class="text-error-500 font-semibold">{$errors.username}</span>
 		{/if}
 		<input
-			class="rounded-token p-2 text-black"
 			id="password"
 			name="password"
 			type="password"
@@ -47,7 +38,6 @@
 			<span class="text-error-500 font-semibold">{$errors.password}</span>
 		{/if}
 		<input
-			class="rounded-token p-2 text-black"
 			id="confirmPassword"
 			name="confirmPassword"
 			type="password"

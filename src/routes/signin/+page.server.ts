@@ -5,7 +5,7 @@ import { fail, redirect } from '@sveltejs/kit';
 import { auth } from '$lib/server/auth/lucia';
 import { LuciaError } from 'lucia';
 
-const signUpSchema = z.object({
+const signInSchema = z.object({
 	username: z.string().min(1, 'Username is required').trim().toLowerCase(),
 	password: z.string().min(1, 'Password is required')
 });
@@ -15,14 +15,14 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (session) {
 		throw redirect(302, '/profile');
 	}
-	const form = await superValidate(signUpSchema);
+	const form = await superValidate(signInSchema);
 
 	return { form };
 };
 
 export const actions = {
 	default: async ({ request, locals }) => {
-		const form = await superValidate(request, signUpSchema);
+		const form = await superValidate(request, signInSchema);
 		if (!form.valid) return fail(400, { form });
 		try {
 			const key = await auth.useKey('username', form.data.username, form.data.password);
