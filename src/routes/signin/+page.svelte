@@ -6,12 +6,12 @@
 	const { form, enhance, errors } = superForm(data.form, {
 		applyAction: true,
 		invalidateAll: true,
-		resetForm: false
+		resetForm: true
 	});
 </script>
 
 <div class="max-w-[80%] md:max-w-[50%] mx-auto">
-	<h1 class="h1 mb-4">Sign Up</h1>
+	<h1 class="h1 mb-4">Sign In</h1>
 	<form use:enhance method="POST" class="flex flex-col gap-4">
 		<input
 			class="rounded-token p-2 text-black"

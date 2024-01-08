@@ -1,12 +1,13 @@
 import { z } from 'zod';
 import type { Actions, PageServerLoad } from './$types';
-import { superValidate } from 'sveltekit-superforms/server';
+import { setError, superValidate } from 'sveltekit-superforms/server';
 import { fail, redirect } from '@sveltejs/kit';
 import { auth } from '$lib/server/auth/lucia';
+import { LuciaError } from 'lucia';
 
 const signUpSchema = z.object({
-	username: z.string({ required_error: 'Please enter your username' }).trim().toLowerCase(),
-	password: z.string({ required_error: 'Please enter your password' })
+	username: z.string().min(1, 'Username is required').trim().toLowerCase(),
+	password: z.string().min(1, 'Password is required')
 });
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -24,13 +25,20 @@ export const actions = {
 		const form = await superValidate(request, signUpSchema);
 		if (!form.valid) return fail(400, { form });
 		try {
-			const key = await auth.useKey('email', form.data.username, form.data.password);
+			const key = await auth.useKey('username', form.data.username, form.data.password);
 			const session = await auth.createSession({
 				userId: key.userId,
 				attributes: {}
 			});
 			locals.auth.setSession(session);
-			console.log(session);
-		} catch (err) {}
+		} catch (err) {
+			if (
+				err instanceof LuciaError &&
+				(err.message === 'AUTH_INVALID_KEY_ID' || 'AUTH_INVALID_PASSWORD')
+			) {
+				// username or password is wrong
+				return setError(form, 'password', 'Email or password is incorrect');
+			}
+		}
 	}
 } satisfies Actions;

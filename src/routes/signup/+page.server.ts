@@ -62,8 +62,8 @@ export const actions = {
 		}
 		const user = await auth.createUser({
 			key: {
-				providerId: 'email',
-				providerUserId: form.data.password,
+				providerId: 'username',
+				providerUserId: form.data.username,
 				password: form.data.password
 			},
 			attributes: {
