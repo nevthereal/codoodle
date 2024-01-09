@@ -33,12 +33,11 @@ export const actions = {
 		try {
 			const session: Session = await locals.auth.validate();
 
-			const date = new Date();
+			console.log(new Date());
 
 			await db.insert(postsTable).values({
 				title: form.data.title,
 				body: form.data.body,
-				createdAt: date.toISOString(),
 				authorId: session.user.userId
 			});
 		} catch (err) {

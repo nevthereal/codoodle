@@ -8,6 +8,13 @@
       "when": 1704309721561,
       "tag": "0000_majestic_hercules",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1704706395079,
+      "tag": "0001_remarkable_goliath",
+      "breakpoints": true
     }
   ]
 }
