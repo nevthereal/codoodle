@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 		.where(eq(postsTable.authorId, session.user.userId))
 		.innerJoin(usersTable, eq(postsTable.authorId, usersTable.id));
 
-	return { posts };
+	return { posts, session };
 };
 export const actions = {
 	default: async ({ request }) => {

@@ -2,7 +2,12 @@
 	import Post from '$lib/components/Post.svelte';
 
 	export let data;
-	let posts = data.posts;
+	const posts = data.posts;
+	const session = data.session;
+	let userId: string | null;
+	if (data.session) {
+		userId = session.user.userId;
+	}
 </script>
 
 <div>
@@ -14,6 +19,6 @@
 <h1 class="h1">Latest posts:</h1>
 <div class="flex flex-col gap-4">
 	{#each posts as post}
-		<Post {post} deletePerm={false} />
+		<Post {post} currentUserId={userId} />
 	{/each}
 </div>

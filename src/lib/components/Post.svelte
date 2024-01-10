@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { marked } from 'marked';
 	export let post: {
 		posts: {
-			id: string;
+			id: number;
 			authorId: string;
 			title: string;
 			body: string;
@@ -15,7 +16,7 @@
 		};
 	};
 
-	export let deletePerm: boolean;
+	export let currentUserId: string | null;
 
 	const createdAt = post.posts.createdAt;
 	const fullDate = `${createdAt.getDate()}.${
@@ -28,9 +29,9 @@
 		<p>{fullDate}</p>
 		<h3 class="h3">{post.posts.title}</h3>
 		<p>{post.users.username}</p>
-		<p>{post.posts.body}</p>
+		<p>{@html marked(post.posts.body)}</p>
 	</div>
-	{#if deletePerm}
+	{#if currentUserId && currentUserId === post.posts.authorId}
 		<form method="POST">
 			<button name="postId" value={post.posts.id} class="btn"
 				><i class="fa-solid fa-trash text-2xl"></i></button
