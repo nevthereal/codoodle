@@ -39,5 +39,6 @@ export const actions = {
 			authorId: session.user.userId,
 			createdAt: new Date()
 		});
+		throw redirect(302, '/');
 	}
 } satisfies Actions;
