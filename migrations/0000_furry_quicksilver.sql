@@ -6,7 +6,7 @@ CREATE TABLE `keys` (
 );
 --> statement-breakpoint
 CREATE TABLE `posts` (
-	`id` text PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY NOT NULL,
 	`author_id` text NOT NULL,
 	`title` text(255) NOT NULL,
 	`body` text(255) NOT NULL,

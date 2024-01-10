@@ -32,7 +32,7 @@ export const userRelation = relations(usersTable, ({ many }) => ({
 
 // posts
 export const postsTable = sqliteTable('posts', {
-	id: text('id').primaryKey(),
+	id: integer('id').primaryKey(),
 	authorId: text('author_id').notNull(),
 	title: text('title', { length: 255 }).notNull(),
 	body: text('body', { length: 255 }).notNull(),
