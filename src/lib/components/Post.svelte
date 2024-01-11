@@ -29,7 +29,7 @@
 		<p>{fullDate}</p>
 		<h3 class="h3">{post.posts.title}</h3>
 		<p>{post.users.username}</p>
-		<p>{@html marked(post.posts.body)}</p>
+		<p class="post-content">{@html marked(post.posts.body)}</p>
 	</div>
 	{#if currentUserId && currentUserId === post.posts.authorId}
 		<form method="POST">
