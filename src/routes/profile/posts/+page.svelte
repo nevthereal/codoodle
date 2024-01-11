@@ -16,5 +16,5 @@
 		<Post {post} currentUserId={userId} />
 	{/each}
 {:else}
-	<p>You have no posts :(</p>
+	<p>You have no posts</p>
 {/if}
