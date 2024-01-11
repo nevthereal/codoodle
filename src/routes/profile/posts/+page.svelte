@@ -10,11 +10,13 @@
 	}
 </script>
 
-<h1 class="h1">Posts</h1>
-{#if posts.length != 0}
-	{#each posts as post}
-		<Post {post} currentUserId={userId} />
-	{/each}
-{:else}
-	<p>You have no posts</p>
-{/if}
+<h1 class="h1 mb-8">Posts</h1>
+<div class="flex flex-col gap-4">
+	{#if posts.length != 0}
+		{#each posts as post}
+			<Post {post} currentUserId={userId} />
+		{/each}
+	{:else}
+		<p>You have no posts</p>
+	{/if}
+</div>

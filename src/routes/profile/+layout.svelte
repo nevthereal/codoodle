@@ -1,9 +1,11 @@
 <script>
 	import ProfileNav from '$lib/components/ProfileNav.svelte';
-	import { AppShell } from '@skeletonlabs/skeleton';
+	import { AppShell, Modal, initializeStores } from '@skeletonlabs/skeleton';
 	let signedIn = true;
+	initializeStores();
 </script>
 
+<Modal />
 {#if signedIn}
 	<AppShell>
 		<svelte:fragment slot="sidebarLeft">
