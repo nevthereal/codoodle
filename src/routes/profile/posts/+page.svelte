@@ -11,6 +11,10 @@
 </script>
 
 <h1 class="h1">Posts</h1>
-{#each posts as post}
-	<Post {post} currentUserId={userId} />
-{/each}
+{#if posts.length != 0}
+	{#each posts as post}
+		<Post {post} currentUserId={userId} />
+	{/each}
+{:else}
+	<p>You have no posts :(</p>
+{/if}
