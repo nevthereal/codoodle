@@ -13,9 +13,10 @@
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
-		"studio": "drizzle-kit studio --config drizzle.config.ts",
-		"generate": "drizzle-kit generate:sqlite --config drizzle.config.ts",
-		"migrate": "drizzle-kit push:sqlite --config drizzle.config.ts"
+		"studio": "drizzle-kit studio",
+		"generate": "drizzle-kit generate:sqlite",
+		"migrate": "drizzle-kit push:sqlite",
+		"drop": "drizzle-kit drop"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
