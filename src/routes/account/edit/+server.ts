@@ -6,5 +6,5 @@ export const DELETE = async ({ locals }) => {
 	if (!session) throw redirect(302, '/signin');
 
 	await auth.deleteUser(session.user.userId);
-	return new Response(String('Success'));
+	return new Response(String('deleted user'));
 };

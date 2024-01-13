@@ -6,6 +6,7 @@ import { db } from '$lib/server/db/db';
 import { eq } from 'drizzle-orm';
 import { usersTable } from '$lib/server/db/schema';
 import type { Session } from 'lucia';
+import { auth } from '$lib/server/auth/lucia';
 
 const username = z.object({
 	username: z
@@ -28,7 +29,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 export const actions = {
 	default: async ({ request, locals }) => {
-		const session: Session = locals.auth.validate();
+		const session: Session = await locals.auth.validate();
 		if (!session) throw redirect(302, '/signin');
 
 		const form = await superValidate(request, username);
@@ -42,9 +43,9 @@ export const actions = {
 			return setError(form, 'username', 'Username is already exists');
 		}
 
-		// await auth.updateUserAttributes(session.user.userId, {
-		// 	username: form.data.username
-		// });
-		// session.invalidate();
+		await auth.updateUserAttributes(session.user.userId, {
+			username: form.data.username
+		});
+		redirect(302, '/account');
 	}
 } satisfies Actions;
