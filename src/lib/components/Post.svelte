@@ -28,7 +28,9 @@
 	<div>
 		<p>{fullDate}</p>
 		<h3 class="h3">{post.posts.title}</h3>
-		<p class="text-surface-500">by <span class="font-semibold">{post.users.username}</span></p>
+		<p class="text-surface-500">
+			by <span class="font-semibold">{post.users.username}</span>{post.users.admin && ' (admin)'}
+		</p>
 		<p class="post-content">{@html marked(post.posts.body)}</p>
 	</div>
 	{#if currentUserId && currentUserId === post.posts.authorId}

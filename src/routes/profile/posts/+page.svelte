@@ -10,7 +10,7 @@
 	}
 </script>
 
-<h1 class="h1 mb-8">Posts</h1>
+<h1 class="h1 mb-8">Your Posts</h1>
 <div class="flex flex-col gap-4">
 	{#if posts.length != 0}
 		{#each posts as post}

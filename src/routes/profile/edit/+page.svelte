@@ -22,7 +22,7 @@
 	};
 </script>
 
-<h1 class="h1">Edit your profile</h1>
+<h1 class="h1 mb-8">Edit your profile</h1>
 <button class="btn variant-ghost-error" on:click={() => modalStore.trigger(dM)}>
 	Delete your account
 </button>
