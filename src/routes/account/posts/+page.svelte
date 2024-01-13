@@ -12,7 +12,7 @@
 
 <h1 class="h1 mb-8">Your Posts</h1>
 <div class="flex flex-col gap-4">
-	{#if posts.length != 0}
+	{#if posts != undefined}
 		{#each posts as post}
 			<Post {post} currentUserId={userId} />
 		{/each}

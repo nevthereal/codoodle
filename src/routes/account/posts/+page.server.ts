@@ -7,19 +7,12 @@ import { auth } from '$lib/server/auth/lucia';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
-	const posts = await db
-		.select()
-		.from(postsTable)
-		.where(eq(postsTable.authorId, session.user.userId))
-		.innerJoin(usersTable, eq(postsTable.authorId, usersTable.id));
+	const posts = await db.query.usersTable.findMany({
+		where: eq(postsTable.authorId, session.user.userId),
+		with: {
+			posts: true
+		}
+	});
 
 	return { posts, session };
 };
-export const actions = {
-	default: async ({ request }) => {
-		const formData = await request.formData();
-		const id = formData.get('postId');
-		const convId = Number(id);
-		await db.delete(postsTable).where(eq(postsTable.id, convId));
-	}
-} satisfies Actions;

@@ -1,43 +1,36 @@
 <script lang="ts">
 	import { marked } from 'marked';
-	export let post: {
-		posts: {
-			id: number;
-			authorId: string;
-			title: string;
-			body: string;
-			createdAt: Date;
-		};
-		users: {
-			id: string;
-			username: string;
-			email: string;
-			admin: boolean | null;
-		};
-	};
+	export let post: any;
 
 	export let currentUserId: string | null;
 
-	const createdAt = post.posts.createdAt;
+	const createdAt = post.createdAt;
 	const fullDate = `${createdAt.getDate()}.${
 		createdAt.getMonth() + 1
 	}.${createdAt.getFullYear()}, ${createdAt.getHours()}:${createdAt.getMinutes()}`;
+
+	const deletePost = () => {
+		fetch(`/delete/?postId=${post.id}`, {
+			method: 'POST'
+		}).then(() => {
+			location.reload();
+		});
+	};
 </script>
 
 <div class="card p-6 flex justify-between items-center">
 	<div>
 		<p>{fullDate}</p>
-		<h3 class="h3">{post.posts.title}</h3>
+		<h3 class="h3">{post.title}</h3>
 		<p class="text-surface-500">
-			by <span class="font-semibold">{post.users.username}</span>{post.users.admin && ' (admin)'}
+			by <a class="font-semibold" href={`profile/${post.author.username}`}>{post.author.username}</a
+			>{post.author.admin && ' (admin)'}
 		</p>
-		<p class="post-content">{@html marked(post.posts.body)}</p>
+		<p class="post-content">{@html marked(post.body)}</p>
 	</div>
-	{#if currentUserId && currentUserId === post.posts.authorId}
-		<form method="POST">
-			<button name="postId" value={post.posts.id} class="btn"
-				><i class="fa-solid fa-trash text-2xl"></i></button
-			>
-		</form>
+	{#if currentUserId === post.authorId}
+		<button on:click={() => deletePost()} class="btn"
+			><i class="fa-solid fa-trash text-2xl"></i></button
+		>
 	{/if}
 </div>

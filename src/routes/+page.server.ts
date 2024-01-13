@@ -6,11 +6,17 @@ import type { Session } from 'lucia';
 import { fail } from '@sveltejs/kit';
 
 export const load = (async ({ locals }) => {
-	const posts = await db
-		.select()
-		.from(postsTable)
-		.orderBy(desc(postsTable.createdAt))
-		.innerJoin(usersTable, eq(postsTable.authorId, usersTable.id));
+	const posts = await db.query.postsTable.findMany({
+		with: {
+			author: {
+				columns: {
+					username: true,
+					id: true,
+					admin: true
+				}
+			}
+		}
+	});
 
 	const session: Session = await locals.auth.validate();
 	return {
