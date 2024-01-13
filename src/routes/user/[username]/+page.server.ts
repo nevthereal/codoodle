@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ url }) => {
-	const usernameFromURL = url.href.split('/profile/'); // returns an array, we want user[1]
+	const usernameFromURL = url.href.split('/user/'); // returns an array, we want user[1]
 
 	const username = usernameFromURL[1];
 

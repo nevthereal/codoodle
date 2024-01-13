@@ -23,7 +23,7 @@
 		<p>{fullDate}</p>
 		<h3 class="h3">{post.title}</h3>
 		<p class="text-surface-500">
-			by <a class="font-semibold" href={`profile/${post.author.username}`}>{post.author.username}</a
+			by <a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a
 			>{post.author.admin && ' (admin)'}
 		</p>
 		<p class="post-content">{@html marked(post.body)}</p>
