@@ -18,8 +18,8 @@
 {:else}
 	<div class="text-center text-lg font-semibold">
 		<p>
-			Please <a href="/profile/signin" class="anchor">sign in</a> or
-			<a href="/profile/signup" class="anchor">create an account</a> to continue
+			Please <a href="/account/signin" class="anchor">sign in</a> or
+			<a href="/account/signup" class="anchor">create an account</a> to continue
 		</p>
 	</div>
 {/if}

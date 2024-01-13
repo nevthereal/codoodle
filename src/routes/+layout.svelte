@@ -11,7 +11,7 @@
 			<a href="/" class="btn">
 				<h1 class="h1">codoodle</h1>
 			</a>
-			<a href="/profile" class="btn">
+			<a href="/account" class="btn">
 				<i class="fa-solid fa-user text-2xl"></i>
 			</a>
 		</header>

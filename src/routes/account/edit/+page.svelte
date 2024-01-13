@@ -16,7 +16,7 @@
 		buttonTextConfirm: 'Delete'
 	};
 	const deleteAcc = () => {
-		fetch('/profile/edit', {
+		fetch('/account/edit', {
 			method: 'DELETE'
 		}).then(() => {
 			goto('/');
