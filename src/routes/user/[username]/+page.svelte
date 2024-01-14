@@ -7,6 +7,10 @@
 	const user = data.user;
 </script>
 
+<svelte:head>
+	<title>{user.username} on Codoodle</title>
+</svelte:head>
+
 <div class="flex flex-col gap-2 my-4">
 	<h1 class="h1">{user.username}</h1>
 	<h4 class="h4">

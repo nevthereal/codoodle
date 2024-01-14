@@ -5,6 +5,10 @@
 	initializeStores();
 </script>
 
+<svelte:head>
+	<title>Your Account</title>
+</svelte:head>
+
 <Modal />
 {#if signedIn}
 	<AppShell>

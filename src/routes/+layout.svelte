@@ -9,6 +9,11 @@
 	>
 </div>
 
+<svelte:head>
+	<title>Codoodle</title>
+	<meta name="description" content="A SvelteKit blog" />
+</svelte:head>
+
 <AppShell>
 	<svelte:fragment slot="header">
 		<header
