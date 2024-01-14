@@ -26,7 +26,11 @@
 			by <a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a
 			>{post.author.admin && ' (admin)'}
 		</p>
-		<p class="post-content">{@html marked(post.body)}</p>
+		<p
+			class="prose-a:anchor prose-p:text-white prose-code:code prose-blockquote:blockquote prose-img:max-w-[90%]"
+		>
+			{@html marked(post.body)}
+		</p>
 	</div>
 	{#if currentUserId === post.authorId}
 		<button on:click={() => deletePost()} class="btn"
