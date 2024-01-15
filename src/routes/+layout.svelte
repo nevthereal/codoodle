@@ -34,12 +34,12 @@
 		<footer
 			class="p-6 font-bold border-t-2 border-primary-500 rounded-tl-container-token rounded-tr-container-token"
 		>
-			<div class="mx-32 grid grid-cols-2">
-				<div class="m-auto">
+			<div class="md:mx-32 md:grid md:grid-cols-2 text-center gap-4">
+				<div class="m-auto hidden md:block">
 					<h2 class="h2">codoodle.</h2>
 					<p>pure innovation.</p>
 				</div>
-				<div class="m-auto">
+				<div class="my-2 md:my-auto">
 					<p>
 						See this project on <a
 							href="https://github.com/nevthereal/blog-svelte"
