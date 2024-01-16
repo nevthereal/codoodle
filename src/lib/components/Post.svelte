@@ -10,7 +10,7 @@
 	}.${createdAt.getFullYear()}, ${createdAt.getHours()}:${createdAt.getMinutes()}`;
 
 	const deletePost = () => {
-		fetch(`/delete/?postId=${post.id}`, {
+		fetch(`/api/delete-post/?postId=${post.id}`, {
 			method: 'POST'
 		}).then(() => {
 			location.reload();
