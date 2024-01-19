@@ -24,10 +24,10 @@
 		<h3 class="h3">{post.title}</h3>
 		<p class="text-surface-500">
 			by <a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a
-			>{post.author.admin && ' (admin)'}
+			>{post.author.admin ? ' (admin)' : ''}
 		</p>
 		<p
-			class="prose-a:anchor prose-p:text-white prose-code:code prose-blockquote:blockquote prose-img:max-w-[90%]"
+			class="prose-a:anchor prose-p:text-white prose-code:code prose-blockquote:blockquote prose-img:max-w-[90%] prose-ul:list-disc prose-ol:list-decimal prose-ol:list-inside prose-ul:list-inside"
 		>
 			{@html marked(post.body)}
 		</p>
