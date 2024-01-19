@@ -6,5 +6,5 @@ export const load = async ({ locals }) => {
 	if (!session.user.admin) throw redirect(302, '/signin');
 
 	const users = await db.query.usersTable.findMany({});
-	return { users };
+	return { users, session };
 };
