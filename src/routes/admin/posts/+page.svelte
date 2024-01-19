@@ -22,7 +22,10 @@
 				{#each posts as post}
 					<tr>
 						<td>{post.id}</td>
-						<td><a href={`/admin/users/${post.author.id}`}>{post.author.username}</a></td>
+						<td
+							><a class="anchor" href={`/admin/users/${post.author.id}`}>{post.author.username}</a
+							></td
+						>
 						<td>{post.title}</td>
 						<td><div class="post-content">{@html marked(post.body)}</div></td>
 					</tr>
