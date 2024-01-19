@@ -3,7 +3,7 @@
 
 	export let data;
 	const user = data.user;
-	const posts = user!.posts;
+	const posts = data.user.posts;
 </script>
 
 <div class="flex gap-8 flex-col">
@@ -23,7 +23,6 @@
 				<thead>
 					<tr>
 						<th>Post Id</th>
-						<th>Author</th>
 						<th>Title</th>
 						<th>Body</th>
 					</tr>
@@ -32,7 +31,6 @@
 					{#each posts as post}
 						<tr>
 							<td>{post.id}</td>
-							<td>{post.author.id}</td>
 							<td>{post.title}</td>
 							<td><div class="post-content">{@html marked(post.body)}</div></td>
 						</tr>
