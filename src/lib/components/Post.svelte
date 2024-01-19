@@ -26,9 +26,7 @@
 			by <a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a
 			>{post.author.admin ? ' (admin)' : ''}
 		</p>
-		<p
-			class="prose-a:anchor prose-p:text-white prose-code:code prose-blockquote:blockquote prose-img:max-w-[90%] prose-ul:list-disc prose-ol:list-decimal prose-ol:list-inside prose-ul:list-inside"
-		>
+		<p class="post-content">
 			{@html marked(post.body)}
 		</p>
 	</div>

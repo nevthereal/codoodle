@@ -10,5 +10,8 @@
 		<li><span class="font-semibold">Username:</span> {user.username}</li>
 		<li><span class="font-semibold">Email Adress:</span> {user.email}</li>
 		<li><span class="font-semibold">Post Count:</span> {postCount}</li>
+		{#if user.admin}
+			<li><a href="/admin" class="anchor">Admin Dashboard</a></li>
+		{/if}
 	{/if}
 </ul>
