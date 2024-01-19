@@ -20,7 +20,6 @@
 				<th>User Id</th>
 				<th>Username</th>
 				<th>Email</th>
-				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,13 +28,6 @@
 					<td><a class="anchor" href={`/admin/users/${user.id}`}>{user.id}</a></td>
 					<td>{user.username}</td>
 					<td>{user.email}</td>
-					<td>
-						{#if !user.admin}
-							<button on:click={() => deleteUser(user.id)}
-								><i class="fa-solid fa-trash btn"></i></button
-							>
-						{/if}</td
-					>
 				</tr>
 			{/each}
 		</tbody>
