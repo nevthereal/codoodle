@@ -4,8 +4,9 @@
 
 	export let data: PageData;
 
-	const { form, enhance, errors } = superForm(data.form, {
-		resetForm: false
+	const { form, enhance, errors, delayed } = superForm(data.form, {
+		resetForm: false,
+		delayMs: 0
 	});
 </script>
 
@@ -20,6 +21,12 @@
 		{#if $errors.body}
 			<span class="text-error-500 font-semibold">{$errors.body}</span>
 		{/if}
-		<button class="mx-auto btn variant-ghost-primary">Post</button>
+		<button class="mx-auto btn variant-ghost-primary"
+			>{#if !$delayed}
+				Post
+			{:else}
+				Loading ...
+			{/if}</button
+		>
 	</form>
 </div>

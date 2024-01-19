@@ -3,9 +3,10 @@
 	import { superForm } from 'sveltekit-superforms/client';
 
 	export let data: PageData;
-	const { form, enhance, errors } = superForm(data.form, {
+	const { form, enhance, errors, delayed } = superForm(data.form, {
 		applyAction: true,
 		invalidateAll: true,
+		delayMs: 0,
 		resetForm: false
 	});
 </script>
@@ -50,7 +51,11 @@
 		<button
 			type="submit"
 			class="variant-ghost-primary mx-auto btn rounded-token text-xl font-semibold text-white"
-			>Sign Up</button
+			>{#if !$delayed}
+				Sign in
+			{:else}
+				Loading ...
+			{/if}</button
 		>
 	</form>
 

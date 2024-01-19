@@ -24,8 +24,9 @@
 	};
 
 	export let data: PageData;
-	const { form, enhance, errors } = superForm(data.form, {
-		resetForm: true
+	const { form, enhance, errors, delayed } = superForm(data.form, {
+		resetForm: true,
+		delayMs: 0
 	});
 </script>
 
@@ -33,12 +34,18 @@
 <form use:enhance method="POST" class="my-16 flex flex-col gap-2 justify-start">
 	<div>
 		<label for="username">Update username:</label>
-		<input type="text" name="username" />
+		<input type="text" name="username" bind:value={$form.username} />
 		{#if $errors.username}
 			<span class="text-error-500">{$errors.username}</span>
 		{/if}
 	</div>
-	<button class="btn variant-ghost-primary mr-auto">Update</button>
+	<button class="btn variant-ghost-primary mr-auto"
+		>{#if !$delayed}
+			Update
+		{:else}
+			Loading ...
+		{/if}</button
+	>
 </form>
 <button class="btn variant-ghost-error" on:click={() => modalStore.trigger(dM)}>
 	Delete your account
