@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>Codoodle - Admin</title>
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <nav class="flex gap-2 justify-center">
 	<a class="btn h2 font-bold" href="/admin">Dashboard</a>
 	<a class="btn h2 font-bold" href="/admin/users">Users</a>
