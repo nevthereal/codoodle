@@ -5,9 +5,6 @@
 	export let currentUserId: string | null;
 
 	const createdAt = post.createdAt;
-	const fullDate = `${createdAt.getDate()}.${
-		createdAt.getMonth() + 1
-	}.${createdAt.getFullYear()}, ${createdAt.getHours()}:${createdAt.getMinutes()}`;
 
 	const deletePost = () => {
 		fetch(`/api/delete-post/?postId=${post.id}`, {
@@ -20,7 +17,7 @@
 
 <div class="card p-6 flex justify-between items-center">
 	<div>
-		<p>{fullDate}</p>
+		<p>{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</p>
 		<h3 class="h3">{post.title}</h3>
 		<p class="text-surface-500">
 			by <a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a

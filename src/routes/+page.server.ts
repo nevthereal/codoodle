@@ -1,6 +1,6 @@
 import { db } from '$lib/server/db/db';
 import { postsTable } from '$lib/server/db/schema';
-import { eq } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 import type { Session } from 'lucia';
 
@@ -15,7 +15,7 @@ export const load = (async ({ locals }) => {
 				}
 			}
 		},
-		orderBy: (postsTable, { desc }) => [desc(postsTable.createdAt)]
+		orderBy: [desc(postsTable.createdAt)]
 	});
 
 	const session: Session = await locals.auth.validate();

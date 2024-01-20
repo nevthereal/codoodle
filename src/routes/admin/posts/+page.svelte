@@ -16,6 +16,7 @@
 					<th>Author</th>
 					<th>Title</th>
 					<th>Body</th>
+					<th>Created At</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +29,8 @@
 						>
 						<td>{post.title}</td>
 						<td><div class="post-content">{@html marked(post.body)}</div></td>
+						<td>{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</td
+						>
 					</tr>
 				{/each}
 			</tbody>

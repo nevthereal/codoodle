@@ -1,4 +1,3 @@
-import { page } from '$app/stores';
 import { db } from '$lib/server/db/db';
 import { postsTable, usersTable } from '$lib/server/db/schema';
 import { desc, eq } from 'drizzle-orm';
@@ -22,7 +21,7 @@ export const load: PageServerLoad = async ({ url }) => {
 						}
 					}
 				},
-				orderBy: (postsTable, { desc }) => [desc(postsTable.createdAt)]
+				orderBy: [desc(postsTable.createdAt)]
 			}
 		},
 		columns: {
