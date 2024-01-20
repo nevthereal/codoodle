@@ -9,6 +9,7 @@
 			await fetch(`/admin/users/delete?id=${userId}`, {
 				method: 'POST'
 			});
+			location.reload();
 		}
 	};
 </script>
@@ -21,6 +22,7 @@
 				<th>Username</th>
 				<th>Email</th>
 				<th>Number of posts</th>
+				<th>Delete User</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -30,6 +32,13 @@
 					<td>{user.username}</td>
 					<td>{user.email}</td>
 					<td>{user.posts.length}</td>
+					<td
+						>{#if session.user.userId != user.id}
+							<button on:click={() => deleteUser(user.id)} class="btn"
+								><i class="fa-solid fa-trash"></i></button
+							>
+						{/if}</td
+					>
 				</tr>
 			{/each}
 		</tbody>

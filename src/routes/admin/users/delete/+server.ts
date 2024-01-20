@@ -6,8 +6,7 @@ import { auth } from '$lib/server/auth/lucia';
 
 export const POST: RequestHandler = async ({ locals, url }) => {
 	const userId = String(url.searchParams.get('id'));
-	auth.invalidateAllUserSessions(userId);
-	await db.delete(usersTable).where(eq(usersTable.id, userId));
+	await auth.deleteUser(userId);
 
 	return new Response(String('Success'));
 };
