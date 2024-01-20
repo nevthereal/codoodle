@@ -19,7 +19,7 @@
 	<div>
 		<h1 class="h1 mb-4">Posts</h1>
 		<div class="table-container">
-			<table class="table table-hover">
+			<table class="table">
 				<thead>
 					<tr>
 						<th>Post Id</th>

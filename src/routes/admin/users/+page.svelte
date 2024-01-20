@@ -15,7 +15,7 @@
 </script>
 
 <div class="table-container">
-	<table class="table table-hover">
+	<table class="table">
 		<thead>
 			<tr>
 				<th>User Id</th>
