@@ -5,6 +5,10 @@ export const load = async ({ locals }) => {
 	const session = await locals.auth.validate();
 	if (!session.user.admin) throw redirect(302, '/signin');
 
-	const users = await db.query.usersTable.findMany({});
+	const users = await db.query.usersTable.findMany({
+		with: {
+			posts: true
+		}
+	});
 	return { users, session };
 };

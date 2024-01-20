@@ -20,6 +20,7 @@
 				<th>User Id</th>
 				<th>Username</th>
 				<th>Email</th>
+				<th>Number of posts</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,6 +29,7 @@
 					<td><a class="anchor" href={`/admin/users/${user.id}`}>{user.id}</a></td>
 					<td>{user.username}</td>
 					<td>{user.email}</td>
+					<td>{user.posts.length}</td>
 				</tr>
 			{/each}
 		</tbody>
