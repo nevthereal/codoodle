@@ -24,6 +24,7 @@ This is actually one of my most exciting projects lately. I really want to put m
 - Posts:
   - Markdown support
   - Post deletion
+- Admin Page:
 
 ## Test this out
 
