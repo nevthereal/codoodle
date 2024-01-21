@@ -26,14 +26,25 @@ export const keysTable = sqliteTable('keys', {
 	hashedPassword: text('hashed_password', { length: 255 }).notNull()
 });
 
-export const userRelation = relations(usersTable, ({ many }) => ({
+export const userRelation = relations(usersTable, ({ many, one }) => ({
 	posts: many(postsTable),
-	sessions: many(sessionsTable)
+	sessions: many(sessionsTable),
+	keys: one(keysTable, {
+		fields: [usersTable.id],
+		references: [keysTable.userId]
+	})
 }));
 
 export const sessionRelation = relations(sessionsTable, ({ one }) => ({
 	user: one(usersTable, {
 		fields: [sessionsTable.userId],
+		references: [usersTable.id]
+	})
+}));
+
+export const keyRelation = relations(keysTable, ({ one }) => ({
+	user: one(usersTable, {
+		fields: [keysTable.userId],
 		references: [usersTable.id]
 	})
 }));
