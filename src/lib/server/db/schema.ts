@@ -27,7 +27,15 @@ export const keysTable = sqliteTable('keys', {
 });
 
 export const userRelation = relations(usersTable, ({ many }) => ({
-	posts: many(postsTable)
+	posts: many(postsTable),
+	sessions: many(sessionsTable)
+}));
+
+export const sessionRelation = relations(sessionsTable, ({ one }) => ({
+	user: one(usersTable, {
+		fields: [sessionsTable.userId],
+		references: [usersTable.id]
+	})
 }));
 
 // posts
