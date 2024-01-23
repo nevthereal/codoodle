@@ -5,10 +5,7 @@ import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
 import { db } from '$lib/server/db/db';
 import { postsTable } from '$lib/server/db/schema';
-import { auth } from '$lib/server/auth/lucia';
 import type { Session } from 'lucia';
-import { SQLiteTimestampBuilder } from 'drizzle-orm/sqlite-core';
-import { randomBytes } from 'crypto';
 
 const postSchema = z.object({
 	title: z.string().min(3, 'Please provide a meaningful title'),
@@ -18,7 +15,7 @@ const postSchema = z.object({
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
 	if (!session) {
-		throw redirect(302, '/signin');
+		redirect(302, '/signin');
 	}
 
 	const form = await superValidate(postSchema);
@@ -31,7 +28,7 @@ export const actions = {
 		const form = await superValidate(request, postSchema);
 		if (!form.valid) return fail(400, { form });
 		const session: Session = await locals.auth.validate();
-		if (!session) throw redirect(302, '/login');
+		if (!session) redirect(302, '/login');
 
 		await db.insert(postsTable).values({
 			title: form.data.title,
@@ -39,6 +36,6 @@ export const actions = {
 			authorId: session.user.userId,
 			createdAt: new Date()
 		});
-		throw redirect(302, '/');
+		redirect(302, '/');
 	}
 } satisfies Actions;

@@ -1,12 +1,11 @@
 import { auth } from '$lib/server/auth/lucia';
 import { db } from '$lib/server/db/db';
-import type { Session } from 'lucia';
 import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
-	if (!session.user.admin) throw redirect(302, '/login');
+	if (!session.user.admin) redirect(302, '/login');
 	const qSessions = await db.query.sessionsTable.findMany({
 		with: {
 			user: true

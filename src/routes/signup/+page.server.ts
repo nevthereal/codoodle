@@ -30,7 +30,7 @@ const signUpSchema = z.object({
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
 	if (session) {
-		throw redirect(302, '/account');
+		redirect(302, '/account');
 	}
 	const form = await superValidate(signUpSchema);
 

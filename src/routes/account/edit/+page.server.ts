@@ -22,7 +22,7 @@ const username = z.object({
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate(); // Validates the session
-	if (!session) throw redirect(302, '/signin');
+	if (!session) redirect(302, '/signin');
 	const form = await superValidate(username);
 	return { session, form };
 };
@@ -30,7 +30,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions = {
 	default: async ({ request, locals }) => {
 		const session: Session = await locals.auth.validate();
-		if (!session) throw redirect(302, '/signin');
+		if (!session) redirect(302, '/signin');
 
 		const form = await superValidate(request, username);
 		if (!form.valid) return fail(400, { form });

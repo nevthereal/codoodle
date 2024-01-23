@@ -30,6 +30,6 @@ export const load: PageServerLoad = async ({ url }) => {
 			id: true
 		}
 	});
-	if (!user) throw error(404, 'User not found');
+	if (!user) error(404, 'User not found');
 	return { user };
 };

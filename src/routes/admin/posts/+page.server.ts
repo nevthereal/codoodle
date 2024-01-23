@@ -3,9 +3,9 @@ import { postsTable } from '$lib/server/db/schema';
 import { redirect } from '@sveltejs/kit';
 import { desc } from 'drizzle-orm';
 
-export const load = async ({ url, locals }) => {
+export const load = async ({ locals }) => {
 	const session = await locals.auth.validate();
-	if (!session.user.admin) throw redirect(302, '/login');
+	if (!session.user.admin) redirect(302, '/login');
 
 	const posts = await db.query.postsTable.findMany({
 		with: {
