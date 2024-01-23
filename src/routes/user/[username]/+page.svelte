@@ -12,7 +12,7 @@
 </svelte:head>
 
 <div class="flex flex-col gap-2 my-4">
-	<h1 class="h1">{user.username}</h1>
+	<h1 class="h1">Overview of <span class="text-primary-500">{user.username}</span></h1>
 	<h4 class="h4">
 		Number of posts: <span
 			class={`${
