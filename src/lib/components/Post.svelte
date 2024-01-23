@@ -1,10 +1,9 @@
 <script lang="ts">
+	import type { postsTable } from '$lib/server/db/schema';
 	import { marked } from 'marked';
 	export let post: any;
 
 	export let currentUserId: string | null;
-
-	const createdAt = post.createdAt;
 
 	const deletePost = () => {
 		fetch(`/api/delete-post/?postId=${post.id}`, {
@@ -20,8 +19,12 @@
 		<p>{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</p>
 		<h3 class="h3">{post.title}</h3>
 		<p class="text-surface-500">
-			by <a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a
-			>{post.author.admin ? ' (admin)' : ''}
+			by {#if post.author != null}
+				<a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a
+				>{post.author.admin ? ' (admin)' : ''}
+			{:else}
+				<span class="italic">Deleted User</span>
+			{/if}
 		</p>
 		<p class="post-content">
 			{@html marked(post.body)}

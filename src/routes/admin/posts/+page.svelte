@@ -24,8 +24,11 @@
 					<tr>
 						<td>{post.id}</td>
 						<td
-							><a class="anchor" href={`/admin/users/${post.author.id}`}>{post.author.username}</a
-							></td
+							>{#if post.author != null}
+								<a class="anchor" href={`/admin/users/${post.author.id}`}>{post.author.username}</a>
+							{:else}
+								<span class="italic">Deleted User</span>
+							{/if}</td
 						>
 						<td>{post.title}</td>
 						<td><div class="post-content">{@html marked(post.body)}</div></td>
