@@ -1,7 +1,9 @@
 import { auth } from '$lib/server/auth/lucia';
 import { db } from '$lib/server/db/db';
+import { asc } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
+import { sessionsTable } from '$lib/server/db/schema';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const session = await locals.auth.validate();
@@ -9,24 +11,13 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const qSessions = await db.query.sessionsTable.findMany({
 		with: {
 			user: true
-		}
+		},
+		orderBy: [asc(sessionsTable.userId)]
 	});
 
-	let sessions: {
-		user: {
-			username: string;
-			email: string;
-			admin: number;
-			userId: string;
-		};
-		sessionId: string;
-		activePeriodExpiresAt: Date;
-		idlePeriodExpiresAt: Date;
-		state: 'active' | 'idle';
-		fresh: boolean;
-	}[] = [];
+	const sessions = [];
 
-	for (let session of qSessions) {
+	for (const session of qSessions) {
 		sessions.push(await auth.getSession(session.id));
 	}
 
