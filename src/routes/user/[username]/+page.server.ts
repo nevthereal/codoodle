@@ -4,7 +4,9 @@ import { desc, eq } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ url }) => {
+export const load: PageServerLoad = async ({ locals, url }) => {
+	const session = await locals.auth.validate();
+
 	const usernameFromURL = url.href.split('/user/'); // returns an array, we want user[1]
 
 	const username = usernameFromURL[1];
@@ -31,5 +33,5 @@ export const load: PageServerLoad = async ({ url }) => {
 		}
 	});
 	if (!user) error(404, 'User not found');
-	return { user };
+	return { user, session };
 };

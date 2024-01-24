@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { postsTable } from '$lib/server/db/schema';
 	import { marked } from 'marked';
 	export let post: any;
 

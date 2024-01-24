@@ -5,6 +5,8 @@
 	export let data: PageData;
 
 	const user = data.user;
+	let userId: string | null;
+	if (data.session) userId = data.session.user.userId;
 </script>
 
 <svelte:head>
@@ -23,6 +25,6 @@
 </div>
 <div class="flex flex-col gap-4">
 	{#each user.posts as post}
-		<Post {post} currentUserId={user.id} />
+		<Post {post} currentUserId={userId} />
 	{/each}
 </div>
