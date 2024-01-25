@@ -4,7 +4,7 @@
 </svelte:head>
 
 <div class="font-mono">
-	<nav class="flex gap-2 justify-center">
+	<nav class="flex gap-2 md:justify-center overflow-x-scroll hide-scrollbar">
 		<a class="btn text-xl font-bold" href="/admin">Dashboard</a>
 		<a class="btn text-xl font-bold" href="/admin/users">Users</a>
 		<a class="btn text-xl font-bold" href="/admin/posts">Posts</a>
