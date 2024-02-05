@@ -25,6 +25,6 @@
 </div>
 <div class="flex flex-col gap-4">
 	{#each user.posts as post}
-		<Post {post} currentUserId={userId} />
+		<Post profileLink={false} {post} currentUserId={userId} />
 	{/each}
 </div>
