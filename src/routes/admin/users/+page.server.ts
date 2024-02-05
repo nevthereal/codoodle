@@ -8,9 +8,6 @@ export const load = async ({ locals }) => {
 	if (!session.user.admin) redirect(302, '/signin');
 
 	const users = await db.query.usersTable.findMany({
-		with: {
-			posts: true
-		},
 		orderBy: [asc(usersTable.username)]
 	});
 	return { users, session };

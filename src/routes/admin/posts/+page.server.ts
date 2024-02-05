@@ -9,7 +9,12 @@ export const load = async ({ locals }) => {
 
 	const posts = await db.query.postsTable.findMany({
 		with: {
-			author: true
+			author: {
+				columns: {
+					id: true,
+					username: true
+				}
+			}
 		},
 		orderBy: [desc(postsTable.createdAt)]
 	});

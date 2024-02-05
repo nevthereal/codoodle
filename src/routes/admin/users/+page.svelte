@@ -21,7 +21,6 @@
 				<th>User Id</th>
 				<th>Username</th>
 				<th>Email</th>
-				<th>Number of posts</th>
 				<th>Delete User</th>
 			</tr>
 		</thead>
@@ -31,7 +30,6 @@
 					<td><a class="anchor" href={`/admin/users/${user.id}`}>{user.id}</a></td>
 					<td>{user.username}</td>
 					<td>{user.email}</td>
-					<td>{user.posts.length}</td>
 					<td
 						>{#if session.user.userId != user.id}
 							<button on:click={() => deleteUser(user.id)} class="btn"

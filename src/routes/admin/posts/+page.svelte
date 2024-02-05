@@ -4,6 +4,15 @@
 	export let data;
 
 	const posts = data.posts;
+
+	const deletePost = async (postId: number) => {
+		if (window.confirm('Do you want to delete this post?')) {
+			await fetch(`/admin/posts/delete?id=${postId}`, {
+				method: 'DELETE'
+			});
+			location.reload();
+		}
+	};
 </script>
 
 <div>
@@ -17,6 +26,7 @@
 					<th>Title</th>
 					<th>Body</th>
 					<th>Created At</th>
+					<th>Delete Post</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,6 +43,11 @@
 						<td>{post.title}</td>
 						<td><div class="post-content">{@html marked(post.body)}</div></td>
 						<td>{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</td
+						>
+						<td
+							><button on:click={() => deletePost(post.id)} class="btn"
+								><i class="fa-solid fa-trash"></i></button
+							></td
 						>
 					</tr>
 				{/each}

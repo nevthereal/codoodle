@@ -8,7 +8,6 @@
 		<a class="btn text-xl font-bold" href="/admin">Dashboard</a>
 		<a class="btn text-xl font-bold" href="/admin/users">Users</a>
 		<a class="btn text-xl font-bold" href="/admin/posts">Posts</a>
-		<a class="btn text-xl font-bold" href="/admin/sessions">Sessions</a>
 	</nav>
 	<main class="py-8">
 		<slot />
