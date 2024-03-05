@@ -58,9 +58,29 @@ export const postsTable = sqliteTable('posts', {
 	createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull()
 });
 
-export const postRelation = relations(postsTable, ({ one }) => ({
+export const postRelation = relations(postsTable, ({ one, many }) => ({
 	author: one(usersTable, {
 		fields: [postsTable.authorId],
+		references: [usersTable.id]
+	}),
+	comments: many(commentsTable)
+}));
+
+export const commentsTable = sqliteTable('comments', {
+	id: integer('id').primaryKey(),
+	authorId: text('author_id').notNull(),
+	content: text('body', { length: 255 }).notNull(),
+	createdAt: integer('createed_at', { mode: 'timestamp_ms' }).notNull(),
+	postId: integer('postId').references(() => postsTable.id)
+});
+
+export const commentRelation = relations(commentsTable, ({ one }) => ({
+	post: one(postsTable, {
+		fields: [commentsTable.postId],
+		references: [postsTable.id]
+	}),
+	author: one(usersTable, {
+		fields: [commentsTable.authorId],
 		references: [usersTable.id]
 	})
 }));
