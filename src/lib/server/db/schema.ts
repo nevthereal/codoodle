@@ -14,37 +14,17 @@ export const sessionsTable = sqliteTable('sessions', {
 	userId: text('user_id', { length: 15 })
 		.notNull()
 		.references(() => usersTable.id),
-	activeExpires: blob('active_expires', { mode: 'bigint' }).notNull(),
-	idleExpires: blob('idle_expires', { mode: 'bigint' }).notNull()
+	expiresAt: blob('expires_at', { mode: 'bigint' }).notNull()
 });
 
-export const keysTable = sqliteTable('keys', {
-	id: text('id', { length: 255 }).primaryKey().notNull(),
-	userId: text('user_id', { length: 15 })
-		.notNull()
-		.references(() => usersTable.id),
-	hashedPassword: text('hashed_password', { length: 255 }).notNull()
-});
-
-export const userRelation = relations(usersTable, ({ many, one }) => ({
+export const userRelation = relations(usersTable, ({ many }) => ({
 	posts: many(postsTable),
-	sessions: many(sessionsTable),
-	keys: one(keysTable, {
-		fields: [usersTable.id],
-		references: [keysTable.userId]
-	})
+	sessions: many(sessionsTable)
 }));
 
 export const sessionRelation = relations(sessionsTable, ({ one }) => ({
 	user: one(usersTable, {
 		fields: [sessionsTable.userId],
-		references: [usersTable.id]
-	})
-}));
-
-export const keyRelation = relations(keysTable, ({ one }) => ({
-	user: one(usersTable, {
-		fields: [keysTable.userId],
 		references: [usersTable.id]
 	})
 }));
@@ -70,7 +50,7 @@ export const commentsTable = sqliteTable('comments', {
 	id: integer('id').primaryKey(),
 	authorId: text('author_id').notNull(),
 	content: text('body', { length: 255 }).notNull(),
-	createdAt: integer('createed_at', { mode: 'timestamp_ms' }).notNull(),
+	createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull(),
 	postId: integer('postId').references(() => postsTable.id)
 });
 

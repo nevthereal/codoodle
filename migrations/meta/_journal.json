@@ -15,6 +15,13 @@
       "when": 1709639517484,
       "tag": "0001_zippy_xavin",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1709704938787,
+      "tag": "0002_busy_mister_sinister",
+      "breakpoints": true
     }
   ]
 }
