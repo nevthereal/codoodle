@@ -1,5 +1,4 @@
 <script>
-	import ProfileNav from '$lib/components/ProfileNav.svelte';
 	import { AppShell, Modal, initializeStores } from '@skeletonlabs/skeleton';
 	let signedIn = true;
 	initializeStores();
