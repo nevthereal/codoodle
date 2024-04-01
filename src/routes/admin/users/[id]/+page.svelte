@@ -2,8 +2,8 @@
 	import { marked } from 'marked';
 
 	export let data;
-	const user = data.user;
-	const posts = data.user.posts;
+	const user = data.qUser;
+	const posts = data.usersPosts;
 </script>
 
 <div class="flex gap-8 flex-col">

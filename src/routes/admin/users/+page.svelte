@@ -2,7 +2,7 @@
 	export let data;
 
 	const users = data.users;
-	const session = data.session;
+	const user = data.user;
 
 	const deleteUser = async (userId: string) => {
 		if (window.confirm('Do you want to delete this user?')) {
@@ -20,7 +20,6 @@
 			<tr>
 				<th>User Id</th>
 				<th>Username</th>
-				<th>Email</th>
 				<th>Delete User</th>
 			</tr>
 		</thead>
@@ -30,10 +29,12 @@
 					<td><a class="anchor" href={`/admin/users/${user.id}`}>{user.id}</a></td>
 					<td>{user.username}</td>
 					<td
-						>{#if session.user.userId != user.id}
+						>{#if user.id != user.id}
 							<button on:click={() => deleteUser(user.id)} class="btn"
 								><i class="fa-solid fa-trash"></i></button
 							>
+						{:else}
+							<span class="italic">not allowed</span>
 						{/if}</td
 					>
 				</tr>

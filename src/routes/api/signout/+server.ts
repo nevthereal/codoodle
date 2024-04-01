@@ -1,10 +1,15 @@
-import { auth } from '$lib/server/auth/lucia';
+import { lucia } from '$lib/server/auth/lucia';
 import { redirect } from '@sveltejs/kit';
 
-export const GET = async ({ locals }) => {
-	const session = await locals.auth.validate();
-	if (!session) redirect(302, '/');
-	await auth.invalidateSession(session.sessionId);
-	locals.auth.setSession(null);
+export const GET = async ({ locals, cookies }) => {
+	if (!locals.session) {
+		redirect(302, '/signin');
+	}
+	await lucia.invalidateSession(locals.session.id);
+	const sessionCookie = lucia.createBlankSessionCookie();
+	cookies.set(sessionCookie.name, sessionCookie.value, {
+		path: '.',
+		...sessionCookie.attributes
+	});
 	redirect(302, '/signin');
 };

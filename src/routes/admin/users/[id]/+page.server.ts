@@ -4,19 +4,19 @@ import { postsTable, usersTable } from '$lib/server/db/schema';
 import { redirect } from '@sveltejs/kit';
 
 export const load = async ({ locals, url }) => {
-	const session = await locals.auth.validate();
-	if (!session.user.admin) redirect(302, '/login');
+	const user = locals.user;
+	if (!user || !user?.admin) redirect(302, '/signin');
 	const userId = url.pathname.split('/admin/users/')[1];
-	const user = await db.query.usersTable.findFirst({
-		where: eq(usersTable.id, userId),
-		with: {
-			posts: {
-				orderBy: [desc(postsTable.createdAt)]
-			}
-		}
+	const qUser = await db.query.usersTable.findFirst({
+		where: eq(usersTable.id, userId)
 	});
 
-	if (!user) redirect(302, '/admin/users');
+	const usersPosts = await db.query.postsTable.findMany({
+		where: eq(postsTable.authorId, userId),
+		orderBy: [desc(postsTable.createdAt)]
+	});
 
-	return { user };
+	if (!qUser) redirect(302, '/admin/users');
+
+	return { qUser, usersPosts };
 };

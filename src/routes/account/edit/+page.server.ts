@@ -5,8 +5,6 @@ import { setError, superValidate } from 'sveltekit-superforms/server';
 import { db } from '$lib/server/db/db';
 import { eq } from 'drizzle-orm';
 import { usersTable } from '$lib/server/db/schema';
-import type { Session } from 'lucia';
-import { auth } from '$lib/server/auth/lucia';
 
 const username = z.object({
 	username: z
@@ -21,15 +19,15 @@ const username = z.object({
 });
 
 export const load: PageServerLoad = async ({ locals }) => {
-	const session = await locals.auth.validate(); // Validates the session
-	if (!session) redirect(302, '/signin');
+	const user = locals.user; // Validates the session
+	if (!user) redirect(302, '/signin');
 	const form = await superValidate(username);
-	return { session, form };
+	return { user, form };
 };
 
 export const actions = {
 	default: async ({ request, locals }) => {
-		const session: Session = await locals.auth.validate();
+		const session = await locals.session;
 		if (!session) redirect(302, '/signin');
 
 		const form = await superValidate(request, username);
@@ -43,9 +41,10 @@ export const actions = {
 			return setError(form, 'username', 'Username is already exists');
 		}
 
-		await auth.updateUserAttributes(session.user.userId, {
-			username: form.data.username
-		});
+		await db
+			.update(usersTable)
+			.set({ username: form.data.username })
+			.where(eq(usersTable.id, session.userId));
 		redirect(302, '/account');
 	}
 } satisfies Actions;

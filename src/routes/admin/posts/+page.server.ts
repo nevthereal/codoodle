@@ -4,8 +4,8 @@ import { redirect } from '@sveltejs/kit';
 import { desc } from 'drizzle-orm';
 
 export const load = async ({ locals }) => {
-	const session = await locals.auth.validate();
-	if (!session.user.admin) redirect(302, '/login');
+	const user = locals.user;
+	if (!user || !user?.admin) redirect(302, '/signin');
 
 	const posts = await db.query.postsTable.findMany({
 		with: {

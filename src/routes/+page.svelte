@@ -1,13 +1,14 @@
 <script lang="ts">
 	import Post from '$lib/components/Post.svelte';
+	import type { PageData } from './$types.js';
 
-	export let data;
+	export let data: PageData;
 	const posts = data.posts;
 	let userId: string | null;
 	let username: string | null;
 	if (data.user) {
-		userId: data.user.id;
-		username: data.user.username;
+		userId = data.user.id;
+		username = data.user.username;
 	}
 </script>
 

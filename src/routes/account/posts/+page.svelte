@@ -2,11 +2,11 @@
 	import Post from '$lib/components/Post.svelte';
 
 	export let data;
-	const session = data.session;
+	const user = data.user;
 	const posts = data.posts;
 	let userId: string | null;
-	if (data.session) {
-		userId = session.user.userId;
+	if (data.user) {
+		userId = user.id;
 	}
 </script>
 
