@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1705862308357,
-      "tag": "0000_curly_warhawk",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1709639517484,
-      "tag": "0001_zippy_xavin",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1709704938787,
-      "tag": "0002_busy_mister_sinister",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1711978244082,
-      "tag": "0003_old_sunset_bain",
+      "when": 1711981376848,
+      "tag": "0000_amused_network",
       "breakpoints": true
     }
   ]

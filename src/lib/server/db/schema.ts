@@ -1,19 +1,20 @@
-import { sqliteTable, integer, text, blob } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
 import { relations } from 'drizzle-orm';
 
 // users and auth
 export const usersTable = sqliteTable('users', {
 	id: text('id', { length: 15 }).primaryKey().notNull(),
+	gitHubId: integer('github_id').notNull().unique(),
 	username: text('username', { length: 255 }).notNull().unique(),
 	admin: integer('admin', { mode: 'boolean' }).default(false)
 });
 
 export const sessionsTable = sqliteTable('sessions', {
-	id: text('id', { length: 127 }).primaryKey().notNull(),
-	userId: text('user_id', { length: 15 })
+	id: text('id').notNull().primaryKey(),
+	userId: text('user_id')
 		.notNull()
 		.references(() => usersTable.id),
-	expiresAt: blob('expires_at', { mode: 'bigint' }).notNull()
+	expiresAt: integer('expires_at').notNull()
 });
 
 export const userRelation = relations(usersTable, ({ many }) => ({

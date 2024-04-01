@@ -1,42 +1,56 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "e76b41f9-5b88-4f74-b969-0ec7cfa6cd8e",
+  "id": "4834bbe6-f182-405e-aefb-d12a8838d4fd",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "keys": {
-      "name": "keys",
+    "comments": {
+      "name": "comments",
       "columns": {
         "id": {
           "name": "id",
-          "type": "text(255)",
+          "type": "integer",
           "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "text(15)",
+        "author_id": {
+          "name": "author_id",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "hashed_password": {
-          "name": "hashed_password",
+        "body": {
+          "name": "body",
           "type": "text(255)",
           "primaryKey": false,
           "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "postId": {
+          "name": "postId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "keys_user_id_users_id_fk": {
-          "name": "keys_user_id_users_id_fk",
-          "tableFrom": "keys",
-          "tableTo": "users",
+        "comments_postId_posts_id_fk": {
+          "name": "comments_postId_posts_id_fk",
+          "tableFrom": "comments",
+          "tableTo": "posts",
           "columnsFrom": [
-            "user_id"
+            "postId"
           ],
           "columnsTo": [
             "id"
@@ -97,28 +111,21 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text(127)",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
           "autoincrement": false
         },
         "user_id": {
           "name": "user_id",
-          "type": "text(15)",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "active_expires": {
-          "name": "active_expires",
-          "type": "blob",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "idle_expires": {
-          "name": "idle_expires",
-          "type": "blob",
+        "expires_at": {
+          "name": "expires_at",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
@@ -153,15 +160,15 @@
           "notNull": true,
           "autoincrement": false
         },
-        "username": {
-          "name": "username",
-          "type": "text(255)",
+        "github_id": {
+          "name": "github_id",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "email": {
-          "name": "email",
+        "username": {
+          "name": "username",
           "type": "text(255)",
           "primaryKey": false,
           "notNull": true,
@@ -177,17 +184,17 @@
         }
       },
       "indexes": {
+        "users_github_id_unique": {
+          "name": "users_github_id_unique",
+          "columns": [
+            "github_id"
+          ],
+          "isUnique": true
+        },
         "users_username_unique": {
           "name": "users_username_unique",
           "columns": [
             "username"
-          ],
-          "isUnique": true
-        },
-        "users_email_unique": {
-          "name": "users_email_unique",
-          "columns": [
-            "email"
           ],
           "isUnique": true
         }

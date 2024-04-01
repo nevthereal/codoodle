@@ -3,12 +3,11 @@
 
 	export let data;
 	const posts = data.posts;
-	const session = data.session;
 	let userId: string | null;
 	let username: string | null;
-	if (data.session) {
-		userId = session.userId;
-		username = session.userId;
+	if (data.user) {
+		userId: data.user.id;
+		username: data.user.username;
 	}
 </script>
 
