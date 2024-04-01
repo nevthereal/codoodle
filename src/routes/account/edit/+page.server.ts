@@ -7,7 +7,7 @@ import { db } from '$lib/server/db/db';
 import { eq } from 'drizzle-orm';
 import { usersTable } from '$lib/server/db/schema';
 
-const username = z.object({
+const schema = z.object({
 	username: z
 		.string({ required_error: 'Username is Required' })
 		.trim()
@@ -15,23 +15,23 @@ const username = z.object({
 		.min(3, { message: 'Your username has to be 3 characters long' })
 		.max(32, { message: 'Your username is too long' })
 		.regex(new RegExp('^[a-zA-Z0-9_]*$'), {
-			message: 'Username can only contain letters, numbers or an underscore'
+			message: 'Username can only contain letters, numbers. Replace spaces with underscores'
 		})
 });
 
 export const load: PageServerLoad = async ({ locals }) => {
 	const user = locals.user; // Validates the session
 	if (!user) redirect(302, '/signin');
-	const form = await superValidate(zod(username));
+	const form = await superValidate(zod(schema));
 	return { user, form };
 };
 
 export const actions = {
 	default: async ({ request, locals }) => {
-		const session = await locals.session;
+		const session = locals.session;
 		if (!session) redirect(302, '/signin');
 
-		const form = await superValidate(request, zod(username));
+		const form = await superValidate(request, zod(schema));
 		if (!form.valid) return fail(400, { form });
 
 		if (

@@ -3,12 +3,18 @@
 @tailwind utilities;
 @tailwind variants;
 
-input {
-	@apply input p-2;
+@font-face {
+	font-family: 'Geist';
+	src: url('/fonts/Geist.ttf');
+	font-display: swap;
 }
 
-textarea {
-	@apply textarea p-2;
+:root [data-theme='abyss'] {
+	--theme-font-family-heading: 'Geist', sans-serif;
+}
+
+html {
+	@apply prose-headings:font-bold;
 }
 
 .post-content {

@@ -34,13 +34,13 @@
 <div class="flex flex-col gap-8">
 	<form use:enhance method="POST" class="flex flex-col gap-2 justify-start">
 		<div>
-			<label for="username">Update username:</label>
+			<label for="username" class="mb-2">Update username:</label>
 			<input type="text" class="input w-min" name="username" bind:value={$form.username} />
 			{#if $errors.username}
 				<span class="text-error-500">{$errors.username}</span>
 			{/if}
 		</div>
-		<button class="btn variant-ghost-primary mr-auto"
+		<button class="btn variant-ghost-primary mr-auto mt-2"
 			>{#if !$delayed}
 				Update
 			{:else}

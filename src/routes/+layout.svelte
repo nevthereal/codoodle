@@ -16,8 +16,8 @@
 
 <AppShell>
 	<svelte:fragment slot="header">
-		<header
-			class="p-6 flex justify-between items-center bg-primary-500 rounded-bl-container-token rounded-br-container-token"
+		<nav
+			class="p-6 flex justify-between items-center bg-surface-500 rounded-bl-container-token rounded-br-container-token"
 		>
 			<a href="/" class="btn">
 				<h1 class="h1">codoodle</h1>
@@ -25,7 +25,7 @@
 			<a href="/account" class="btn">
 				<i class="fa-solid fa-user text-2xl"></i>
 			</a>
-		</header>
+		</nav>
 	</svelte:fragment>
 	<main class="p-8">
 		<slot />
