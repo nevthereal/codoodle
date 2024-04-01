@@ -16,9 +16,11 @@
 
 <div class="card p-6 flex justify-between items-center">
 	<div>
-		<p>{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</p>
+		<p class="text-surface-300">
+			{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
+		</p>
 		<h3 class="h3">{post.title}</h3>
-		<p class="text-surface-500">
+		<p class="text-surface-300">
 			{#if profileLink}
 				by {#if post.author != null}
 					<a class="font-semibold" href={`user/${post.author.username}`}>{post.author.username}</a

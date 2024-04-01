@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
-	const session = await locals.auth.validate();
+	const session = locals.session;
 
 	const usernameFromURL = url.href.split('/user/'); // returns an array, we want user[1]
 

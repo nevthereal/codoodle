@@ -6,7 +6,7 @@
 
 	const user = data.user;
 	let userId: string | null;
-	if (data.session) userId = data.session.user.userId;
+	if (data.session) userId = data.session.userId;
 </script>
 
 <svelte:head>
