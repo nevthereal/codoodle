@@ -29,7 +29,6 @@
 				<tr>
 					<td><a class="anchor" href={`/admin/users/${user.id}`}>{user.id}</a></td>
 					<td>{user.username}</td>
-					<td>{user.email}</td>
 					<td
 						>{#if session.user.userId != user.id}
 							<button on:click={() => deleteUser(user.id)} class="btn"

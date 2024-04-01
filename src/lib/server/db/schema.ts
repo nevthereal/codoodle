@@ -5,7 +5,6 @@ import { relations } from 'drizzle-orm';
 export const usersTable = sqliteTable('users', {
 	id: text('id', { length: 15 }).primaryKey().notNull(),
 	username: text('username', { length: 255 }).notNull().unique(),
-	email: text('email', { length: 255 }).notNull().unique(),
 	admin: integer('admin', { mode: 'boolean' }).default(false)
 });
 

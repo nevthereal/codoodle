@@ -7,8 +7,8 @@
 	let userId: string | null;
 	let username: string | null;
 	if (data.session) {
-		userId = session.user.userId;
-		username = session.user.username;
+		userId = session.userId;
+		username = session.userId;
 	}
 </script>
 

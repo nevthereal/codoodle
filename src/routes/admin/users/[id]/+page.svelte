@@ -12,7 +12,6 @@
 		<ul>
 			<li><span class="font-semibold">Id: </span>{user?.id}</li>
 			<li><span class="font-semibold">Username: </span>{user?.username}</li>
-			<li><span class="font-semibold">Email: </span>{user?.email}</li>
 			<li><span class="font-semibold">Admin: </span>{user?.admin}</li>
 		</ul>
 	</div>
