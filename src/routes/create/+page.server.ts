@@ -2,7 +2,8 @@ import { redirect } from '@sveltejs/kit';
 import { fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
 import { z } from 'zod';
-import { superValidate } from 'sveltekit-superforms/server';
+import { superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
 import { db } from '$lib/server/db/db';
 import { postsTable } from '$lib/server/db/schema';
 
@@ -17,14 +18,14 @@ export const load: PageServerLoad = async ({ locals }) => {
 		redirect(302, '/signin');
 	}
 
-	const form = await superValidate(postSchema);
+	const form = await superValidate(zod(postSchema));
 
 	return { form };
 };
 
 export const actions = {
 	default: async ({ request, locals }) => {
-		const form = await superValidate(request, postSchema);
+		const form = await superValidate(request, zod(postSchema));
 		if (!form.valid) return fail(400, { form });
 		const user = locals.user;
 		if (!user) redirect(302, '/login');

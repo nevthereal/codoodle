@@ -1,7 +1,8 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { z } from 'zod';
-import { setError, superValidate } from 'sveltekit-superforms/server';
+import { setError, superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
 import { db } from '$lib/server/db/db';
 import { eq } from 'drizzle-orm';
 import { usersTable } from '$lib/server/db/schema';
@@ -21,7 +22,7 @@ const username = z.object({
 export const load: PageServerLoad = async ({ locals }) => {
 	const user = locals.user; // Validates the session
 	if (!user) redirect(302, '/signin');
-	const form = await superValidate(username);
+	const form = await superValidate(zod(username));
 	return { user, form };
 };
 
@@ -30,7 +31,7 @@ export const actions = {
 		const session = await locals.session;
 		if (!session) redirect(302, '/signin');
 
-		const form = await superValidate(request, username);
+		const form = await superValidate(request, zod(username));
 		if (!form.valid) return fail(400, { form });
 
 		if (
