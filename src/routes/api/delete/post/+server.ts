@@ -3,7 +3,7 @@ import { postsTable } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import type { RequestHandler } from './$types';
 
-export const POST: RequestHandler = async ({ url }) => {
+export const DELETE: RequestHandler = async ({ url }) => {
 	// URL {
 	// 	href: 'http://localhost:5173/delete?2',
 	// 	origin: 'http://localhost:5173',

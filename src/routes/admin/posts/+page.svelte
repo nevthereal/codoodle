@@ -7,10 +7,9 @@
 
 	const deletePost = async (postId: number) => {
 		if (window.confirm('Do you want to delete this post?')) {
-			await fetch(`/admin/posts/delete?id=${postId}`, {
-				method: 'DELETE'
+			await fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(() => {
+				location.reload();
 			});
-			location.reload();
 		}
 	};
 </script>

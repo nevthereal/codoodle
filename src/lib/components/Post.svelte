@@ -7,7 +7,7 @@
 
 	const deletePost = () => {
 		fetch(`/api/delete-post/?postId=${post.id}`, {
-			method: 'POST'
+			method: 'DELETE'
 		}).then(() => {
 			location.reload();
 		});
