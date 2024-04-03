@@ -20,7 +20,7 @@ const schema = z.object({
 });
 
 export const load: PageServerLoad = async ({ locals }) => {
-	const user = locals.user; // Validates the session
+	const user = locals.user;
 	if (!user) redirect(302, '/signin');
 	const form = await superValidate(zod(schema));
 	return { user, form };

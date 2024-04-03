@@ -16,10 +16,10 @@
 		buttonTextConfirm: 'Delete'
 	};
 	const deleteAcc = () => {
-		fetch('/api/delete-account', {
+		fetch('/api/delete/currentuser', {
 			method: 'DELETE'
 		}).then(() => {
-			goto('/');
+			goto('/signin');
 		});
 	};
 
@@ -31,7 +31,7 @@
 </script>
 
 <h1 class="h1 mb-8">Edit your profile</h1>
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-6">
 	<form use:enhance method="POST" class="flex flex-col gap-2 justify-start">
 		<div>
 			<label for="username" class="mb-2">Update username:</label>
@@ -48,7 +48,7 @@
 			{/if}</button
 		>
 	</form>
-	<button disabled class="btn variant-ghost-error w-min" on:click={() => modalStore.trigger(dM)}>
-		Delete your account (currently not available)
+	<button class="btn variant-ghost-error w-min" on:click={() => modalStore.trigger(dM)}>
+		Delete your account
 	</button>
 </div>

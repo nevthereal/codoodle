@@ -2,14 +2,13 @@
 	export let data;
 
 	const users = data.users;
-	const user = data.user;
+	const currentUser = data.user;
 
 	const deleteUser = async (userId: string) => {
 		if (window.confirm('Do you want to delete this user?')) {
-			await fetch(`/admin/users/delete?id=${userId}`, {
-				method: 'POST'
+			await fetch(`/api/delete/user?id=${userId}`, {
+				method: 'DELETE'
 			});
-			location.reload();
 		}
 	};
 </script>
@@ -29,12 +28,10 @@
 					<td><a class="anchor" href={`/admin/users/${user.id}`}>{user.id}</a></td>
 					<td>{user.username}</td>
 					<td
-						>{#if user.id != user.id}
+						>{#if currentUser.id != user.id}
 							<button on:click={() => deleteUser(user.id)} class="btn"
 								><i class="fa-solid fa-trash"></i></button
 							>
-						{:else}
-							<span class="italic">not allowed</span>
 						{/if}</td
 					>
 				</tr>
