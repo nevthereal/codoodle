@@ -1,13 +1,6 @@
-<script lang="ts">
-	import { Modal, initializeStores } from '@skeletonlabs/skeleton';
-	initializeStores();
-</script>
-
 <svelte:head>
 	<title>Your Account</title>
 </svelte:head>
-
-<Modal />
 
 <div class="flex md:flex-row flex-col">
 	<nav

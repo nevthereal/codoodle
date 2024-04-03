@@ -1,15 +1,29 @@
 <script lang="ts">
+	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
+
 	export let data;
 
 	const users = data.users;
 	const currentUser = data.user;
 
+	const modalStore = getModalStore();
+
 	const deleteUser = async (userId: string) => {
-		if (window.confirm('Do you want to delete this user?')) {
-			await fetch(`/api/delete/user?id=${userId}`, {
-				method: 'DELETE'
-			});
-		}
+		const dM: ModalSettings = {
+			type: 'confirm',
+			title: 'Confirm post deletion',
+			body: 'Do you really want to delete this post?',
+			response: (r) => {
+				if (r) {
+					fetch(`/api/delete/user?id=${userId}`, {
+						method: 'DELETE'
+					}).then(() => location.reload());
+				}
+			},
+			buttonTextConfirm: 'Delete'
+		};
+
+		modalStore.trigger(dM);
 	};
 </script>
 

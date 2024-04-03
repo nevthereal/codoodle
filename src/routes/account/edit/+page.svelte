@@ -3,6 +3,7 @@
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms';
+	import { redirect } from '@sveltejs/kit';
 
 	const modalStore = getModalStore();
 
@@ -19,7 +20,7 @@
 		fetch('/api/delete/currentuser', {
 			method: 'DELETE'
 		}).then(() => {
-			goto('/signin');
+			redirect(302, '/signin');
 		});
 	};
 

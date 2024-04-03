@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { marked } from 'marked';
 
 	interface Post {
@@ -19,12 +20,22 @@
 
 	export let currentUserId: string | null;
 
+	const modalStore = getModalStore();
+
+	const dM: ModalSettings = {
+		type: 'confirm',
+		title: 'Confirm post deletion',
+		body: 'Do you really want to delete this post?',
+		response: (r) => {
+			if (r) deletePost(post.id);
+		},
+		buttonTextConfirm: 'Delete'
+	};
+
 	const deletePost = async (postId: number) => {
-		if (window.confirm('Do you want to delete this post?')) {
-			await fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(() => {
-				location.reload();
-			});
-		}
+		await fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(() => {
+			location.reload();
+		});
 	};
 </script>
 
@@ -49,7 +60,7 @@
 		</p>
 	</div>
 	{#if currentUserId === post.authorId}
-		<button on:click={() => deletePost(post.id)} class="btn"
+		<button on:click={() => modalStore.trigger(dM)} class="btn"
 			><i class="fa-solid fa-trash text-2xl"></i></button
 		>
 	{/if}

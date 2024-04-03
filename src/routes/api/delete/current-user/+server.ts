@@ -13,7 +13,7 @@ export const DELETE: RequestHandler = async ({ locals }) => {
 		db.delete(sessionsTable).where(eq(sessionsTable.userId, user.id));
 		db.delete(usersTable).where(eq(usersTable.id, user.id));
 
-		redirect(302, '/signin');
+		return new Response(String('Succesfully deleted user'));
 	} else {
 		redirect(302, '/account/edit');
 	}

@@ -1,7 +1,11 @@
 <script lang="ts">
 	import '../app.postcss';
 	import { AppShell } from '@skeletonlabs/skeleton';
+	import { Modal, initializeStores } from '@skeletonlabs/skeleton';
+	initializeStores();
 </script>
+
+<Modal />
 
 <div>
 	<a href="/create"
