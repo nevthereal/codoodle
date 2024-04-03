@@ -1,16 +1,30 @@
 <script lang="ts">
 	import { marked } from 'marked';
-	export let post: any;
+
+	interface Post {
+		id: number;
+		authorId: string;
+		title: string;
+		body: string;
+		createdAt: Date;
+		author: {
+			id: string;
+			username: string;
+			admin: boolean | null;
+		};
+	}
+
+	export let post: Post;
 	export let profileLink = true;
 
 	export let currentUserId: string | null;
 
-	const deletePost = () => {
-		fetch(`/api/delete-post/?postId=${post.id}`, {
-			method: 'DELETE'
-		}).then(() => {
-			location.reload();
-		});
+	const deletePost = async (postId: number) => {
+		if (window.confirm('Do you want to delete this post?')) {
+			await fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(() => {
+				location.reload();
+			});
+		}
 	};
 </script>
 
@@ -35,7 +49,7 @@
 		</p>
 	</div>
 	{#if currentUserId === post.authorId}
-		<button on:click={() => deletePost()} class="btn"
+		<button on:click={() => deletePost(post.id)} class="btn"
 			><i class="fa-solid fa-trash text-2xl"></i></button
 		>
 	{/if}

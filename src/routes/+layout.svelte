@@ -5,7 +5,7 @@
 
 <div>
 	<a href="/create"
-		><i class="fa-solid fa-plus-circle text-6xl text-secondary-500 fixed bottom-4 right-4"></i></a
+		><i class="fa-solid fa-plus-circle text-6xl text-primary-500 fixed bottom-4 right-4"></i></a
 	>
 </div>
 

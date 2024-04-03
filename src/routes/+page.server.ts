@@ -3,8 +3,8 @@ import { postsTable } from '$lib/server/db/schema';
 import { desc } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals }) => {
-	const posts = await db.query.postsTable.findMany({
+export const load: PageServerLoad = ({ locals }) => {
+	const posts = db.query.postsTable.findMany({
 		with: {
 			author: {
 				columns: {
