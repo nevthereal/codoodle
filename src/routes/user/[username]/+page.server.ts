@@ -16,12 +16,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 		with: {
 			posts: {
 				with: {
-					author: {
-						columns: {
-							username: true,
-							admin: true
-						}
-					}
+					author: true
 				},
 				orderBy: [desc(postsTable.createdAt)]
 			}
@@ -29,7 +24,8 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 		columns: {
 			username: true,
 			admin: true,
-			id: true
+			id: true,
+			joined: true
 		}
 	});
 	if (!user) error(404, 'User not found');

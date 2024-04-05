@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Post from '$lib/components/Post.svelte';
+	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -21,6 +22,9 @@
 				user.posts.length < 5 ? 'text-grey-500' : user.posts.length < 10 ? 'text-amber-500' : ''
 			} `}>{user.posts.length}</span
 		>
+	</h4>
+	<h4 class="h4">
+		Joined: <span>{dayjs(user.joined).fromNow()}</span>
 	</h4>
 </div>
 <div class="flex flex-col gap-4">
