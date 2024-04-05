@@ -14,10 +14,11 @@
 {#if username}
 	<h3 class="h3">Hello <span class="text-primary-500">{username}</span></h3>
 {/if}
+
 <h1 class="h1 mb-8">Latest posts:</h1>
 
 {#await data.posts}
-	<p>Loading posts</p>
+	<p class="italic font-mono">Loading posts ...</p>
 {:then posts}
 	<div class="flex flex-col gap-4">
 		{#each posts as post}

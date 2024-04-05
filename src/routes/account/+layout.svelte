@@ -4,7 +4,7 @@
 
 <div class="flex md:flex-row flex-col">
 	<nav
-		class="md:rounded-container-token md:bg-surface-500 p-6 font-semibold border-b-surface-500 border-b-2"
+		class="md:rounded-container-token md:bg-surface-500 p-6 font-semibold border-b-surface-500 border-b-2 h-min"
 	>
 		<ul class="flex flex-col gap-2">
 			<li>

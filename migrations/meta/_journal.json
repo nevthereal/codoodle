@@ -8,6 +8,13 @@
       "when": 1711986184701,
       "tag": "0000_great_lionheart",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1712292943722,
+      "tag": "0001_bumpy_maddog",
+      "breakpoints": true
     }
   ]
 }

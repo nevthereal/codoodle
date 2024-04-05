@@ -6,7 +6,8 @@ export const usersTable = sqliteTable('users', {
 	id: text('id', { length: 15 }).primaryKey().notNull(),
 	gitHubId: integer('github_id').notNull().unique(),
 	username: text('username', { length: 255 }).notNull().unique(),
-	admin: integer('admin', { mode: 'boolean' }).default(false)
+	admin: integer('admin', { mode: 'boolean' }).default(false),
+	joined: integer('joined_at', { mode: 'timestamp' })
 });
 
 export const sessionsTable = sqliteTable('sessions', {
