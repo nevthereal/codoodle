@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { marked } from 'marked';
+	import fromNow from 'dayjs/plugin/relativeTime.js';
+	import dayjs from 'dayjs';
+
+	dayjs.extend(fromNow);
 
 	interface Post {
 		id: number;
@@ -42,7 +46,7 @@
 <div class="card p-6 flex justify-between items-center">
 	<div>
 		<p class="text-surface-300">
-			{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
+			{dayjs(post.createdAt).fromNow()}
 		</p>
 		<h3 class="h3">{post.title}</h3>
 		<p class="text-surface-300">

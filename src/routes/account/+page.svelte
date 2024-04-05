@@ -1,5 +1,8 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
+	import fromNow from 'dayjs/plugin/relativeTime.js';
+
+	dayjs.extend(fromNow);
 
 	export let data;
 	export const user = data.user;
@@ -13,7 +16,7 @@
 		<li><span class="font-semibold">Post Count:</span> {postCount}</li>
 		<li>
 			<span class="font-semibold">Joined:</span>
-			{user.joined.toLocaleString([], { dateStyle: 'medium' })}
+			{dayjs(user.joined).fromNow()}
 		</li>
 		{#if user.admin}
 			<li><a href="/admin" class="anchor">Admin Dashboard</a></li>
