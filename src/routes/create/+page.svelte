@@ -4,7 +4,7 @@
 
 	export let data: PageData;
 
-	const { form, enhance, errors, delayed } = superForm(data.form, {
+	const { form, enhance, errors, delayed, message } = superForm(data.form, {
 		resetForm: false,
 		delayMs: 0
 	});
@@ -33,5 +33,8 @@
 				Loading ...
 			{/if}</button
 		>
+		{#if $message}
+			<span class="text-error-500">{$message}</span>
+		{/if}
 	</form>
 </div>
