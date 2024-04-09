@@ -2,7 +2,8 @@ import { redirect } from '@sveltejs/kit';
 import { fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
 import { z } from 'zod';
-import { superValidate } from 'sveltekit-superforms';
+import { setMessage, superValidate } from 'sveltekit-superforms';
+import { RateLimiter } from 'sveltekit-rate-limiter/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { db } from '$lib/server/db/db';
 import { postsTable } from '$lib/server/db/schema';
@@ -23,11 +24,19 @@ export const load: PageServerLoad = async ({ locals }) => {
 	return { form };
 };
 
+const limiter = new RateLimiter({
+	IP: [5, 'h'], // IP address limiter
+	IPUA: [2, 'm'] // IP + User Agent limiter
+});
+
 export const actions = {
-	default: async ({ request, locals }) => {
-		const form = await superValidate(request, zod(postSchema));
+	default: async (event) => {
+		const form = await superValidate(event.request, zod(postSchema));
+		if (await limiter.isLimited(event)) {
+			return setMessage(form, 'Too many requests', { status: 429 });
+		}
 		if (!form.valid) return fail(400, { form });
-		const user = locals.user;
+		const user = event.locals.user;
 		if (!user) redirect(302, '/login');
 
 		await db.insert(postsTable).values({
