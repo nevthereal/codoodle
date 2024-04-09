@@ -33,7 +33,9 @@ export const actions = {
 	default: async (event) => {
 		const form = await superValidate(event.request, zod(postSchema));
 		if (await limiter.isLimited(event)) {
-			return setMessage(form, 'Too many requests', { status: 429 });
+			return setMessage(form, 'You created too many posts. Please try again later', {
+				status: 429
+			});
 		}
 		if (!form.valid) return fail(400, { form });
 		const user = event.locals.user;
