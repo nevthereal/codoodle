@@ -23,9 +23,8 @@
 	<h4 class="h4">
 		Number of posts: <span
 			class={cn(
-				user.posts.length < 5 && 'text-grey-500',
-				user.posts.length < 10 && 'text-amber-500',
-				'text-white'
+				user.posts.length >= 5 && 'text-gray-500',
+				user.posts.length >= 10 && 'text-amber-500'
 			)}>{user.posts.length}</span
 		>
 	</h4>
