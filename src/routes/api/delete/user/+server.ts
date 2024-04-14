@@ -7,6 +7,7 @@ import type { RequestHandler } from './$types';
 export const DELETE: RequestHandler = async ({ locals, url }) => {
 	const userId = url.searchParams.get('id');
 	const user = locals.user;
+
 	if (!user || !user.admin) redirect(302, '/signin');
 
 	if (!userId) redirect(302, '/admin/users');

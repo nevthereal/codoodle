@@ -2,8 +2,10 @@ import { db } from '$lib/server/db/db';
 import { postsTable } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import type { RequestHandler } from './$types';
+import { fail } from 'assert';
+import { redirect } from '@sveltejs/kit';
 
-export const DELETE: RequestHandler = async ({ url }) => {
+export const DELETE: RequestHandler = async ({ url, locals }) => {
 	// URL {
 	// 	href: 'http://localhost:5173/delete?2',
 	// 	origin: 'http://localhost:5173',
@@ -19,7 +21,21 @@ export const DELETE: RequestHandler = async ({ url }) => {
 	// 	hash: ''
 	//   }
 
+	const user = locals.user;
+
+	if (!user) redirect(302, '/signin');
+
 	const postId = Number(url.searchParams.get('postId'));
-	await db.delete(postsTable).where(eq(postsTable.id, postId));
-	return new Response(String('Success'));
+	const post = await db.query.postsTable.findFirst({
+		where: eq(postsTable.id, postId)
+	});
+
+	if (!post) {
+		return fail('Failed');
+	} else if (post.authorId != user?.id) {
+		await db.delete(postsTable).where(eq(postsTable.id, postId));
+	} else if (user.admin) {
+		await db.delete(postsTable).where(eq(postsTable.id, postId));
+	}
+	redirect(302, '/');
 };

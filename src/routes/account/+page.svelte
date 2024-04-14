@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from '$lib/utils';
 	import dayjs from 'dayjs';
 	import fromNow from 'dayjs/plugin/relativeTime.js';
 
@@ -12,7 +13,16 @@
 <ul class="text-lg">
 	{#if user}
 		<li><span class="font-semibold">Username:</span> {user.username}</li>
-		<li><span class="font-semibold">Post Count:</span> {data.postCount}</li>
+		<li>
+			<span
+				class={cn(
+					data.postCount >= 5 && 'text-gray-500',
+					data.postCount >= 10 && 'text-amber-500',
+					'font-semibold'
+				)}>Post Count:</span
+			>
+			{data.postCount}
+		</li>
 		<li>
 			<span class="font-semibold">Joined:</span>
 			{dayjs(user.joined).fromNow()}
