@@ -2,8 +2,12 @@
 	import Post from '$lib/components/Post.svelte';
 	import dayjs from 'dayjs';
 	import type { PageData } from './$types';
+	import { cn } from '$lib/utils';
+	import fromNow from 'dayjs/plugin/relativeTime.js';
 
 	export let data: PageData;
+
+	dayjs.extend(fromNow);
 
 	const user = data.user;
 	let userId: string | null;
@@ -18,9 +22,11 @@
 	<h1 class="h1">Overview of <span class="text-primary-500">{user.username}</span></h1>
 	<h4 class="h4">
 		Number of posts: <span
-			class={`${
-				user.posts.length < 5 ? 'text-grey-500' : user.posts.length < 10 ? 'text-amber-500' : ''
-			} `}>{user.posts.length}</span
+			class={cn(
+				user.posts.length < 5 && 'text-grey-500',
+				user.posts.length < 10 && 'text-amber-500',
+				'text-white'
+			)}>{user.posts.length}</span
 		>
 	</h4>
 	<h4 class="h4">
