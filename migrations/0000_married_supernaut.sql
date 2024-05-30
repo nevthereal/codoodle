@@ -1,18 +1,10 @@
-CREATE TABLE `comments` (
-	`id` integer PRIMARY KEY NOT NULL,
-	`author_id` text NOT NULL,
-	`body` text(255) NOT NULL,
-	`created_at` integer NOT NULL,
-	`postId` integer,
-	FOREIGN KEY (`postId`) REFERENCES `posts`(`id`) ON UPDATE no action ON DELETE no action
-);
---> statement-breakpoint
 CREATE TABLE `posts` (
 	`id` integer PRIMARY KEY NOT NULL,
 	`author_id` text NOT NULL,
 	`title` text(255) NOT NULL,
 	`body` text(255) NOT NULL,
-	`created_at` integer NOT NULL
+	`created_at` integer NOT NULL,
+	FOREIGN KEY (`author_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `sessions` (
@@ -26,7 +18,8 @@ CREATE TABLE `users` (
 	`id` text(15) PRIMARY KEY NOT NULL,
 	`github_id` integer NOT NULL,
 	`username` text(255) NOT NULL,
-	`admin` integer DEFAULT false
+	`admin` integer DEFAULT false,
+	`joined_at` integer
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `users_github_id_unique` ON `users` (`github_id`);--> statement-breakpoint

@@ -33,35 +33,17 @@ export const sessionRelation = relations(sessionsTable, ({ one }) => ({
 // posts
 export const postsTable = sqliteTable('posts', {
 	id: integer('id').primaryKey(),
-	authorId: text('author_id').notNull(),
+	authorId: text('author_id')
+		.notNull()
+		.references(() => usersTable.id),
 	title: text('title', { length: 255 }).notNull(),
 	body: text('body', { length: 255 }).notNull(),
 	createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull()
 });
 
-export const postRelation = relations(postsTable, ({ one, many }) => ({
+export const postRelation = relations(postsTable, ({ one }) => ({
 	author: one(usersTable, {
 		fields: [postsTable.authorId],
-		references: [usersTable.id]
-	}),
-	comments: many(commentsTable)
-}));
-
-export const commentsTable = sqliteTable('comments', {
-	id: integer('id').primaryKey(),
-	authorId: text('author_id').notNull(),
-	content: text('body', { length: 255 }).notNull(),
-	createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull(),
-	postId: integer('postId').references(() => postsTable.id)
-});
-
-export const commentRelation = relations(commentsTable, ({ one }) => ({
-	post: one(postsTable, {
-		fields: [commentsTable.postId],
-		references: [postsTable.id]
-	}),
-	author: one(usersTable, {
-		fields: [commentsTable.authorId],
 		references: [usersTable.id]
 	})
 }));
