@@ -15,7 +15,7 @@
 
 <svelte:head>
 	<title>Codoodle</title>
-	<meta name="description" content="A SvelteKit blog" />
+	<meta name="description" content="A SvelteKit social texting app" />
 </svelte:head>
 
 <AppShell>
@@ -46,7 +46,7 @@
 				<div class="my-2 md:my-auto">
 					<p>
 						See this project on <a
-							href="https://github.com/nevthereal/blog-svelte"
+							href="https://github.com/nevthereal/codoodle"
 							class="anchor"
 							target="_blank">GitHub</a
 						>

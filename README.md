@@ -1,10 +1,10 @@
 # codoodle
 
-A SvelteKit blog using Drizzle + Turso
+A SvelteKit social texting using Drizzle + Turso
 
 ## About this repository
 
-This is actually one of my most exciting projects lately. I really want to put my newly gained db and ORM knowledge to the test. This is why I am currently working on this (highly) sophisticated blog using the most bleeding edge technology known to me.
+This is actually one of my most exciting projects lately. I really want to put my newly gained db and ORM knowledge to the test. This is why I am currently working on this (highly) sophisticated social media kinda app using the most bleeding edge technology known to me.
 
 ## Tech used:
 
