@@ -1,5 +1,5 @@
 import { relations } from 'drizzle-orm';
-import { boolean, integer, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { boolean, integer, pgTable, serial, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 // users and auth
 export const usersTable = pgTable('users', {
@@ -32,7 +32,7 @@ export const sessionRelation = relations(sessionsTable, ({ one }) => ({
 
 // posts
 export const postsTable = pgTable('posts', {
-	id: integer('id').primaryKey(),
+	id: serial('id').primaryKey(),
 	authorId: text('author_id')
 		.notNull()
 		.references(() => usersTable.id),

@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS "posts" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"author_id" text NOT NULL,
 	"title" varchar(255) NOT NULL,
 	"body" varchar(255) NOT NULL,
