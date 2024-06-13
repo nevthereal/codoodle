@@ -15,7 +15,7 @@ export const sessionsTable = pgTable('sessions', {
 	userId: text('user_id')
 		.notNull()
 		.references(() => usersTable.id),
-	expiresAt: integer('expires_at').notNull()
+	expiresAt: timestamp('expires_at').notNull()
 });
 
 export const userRelation = relations(usersTable, ({ many }) => ({
