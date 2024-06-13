@@ -1,11 +1,11 @@
-import { drizzle } from 'drizzle-orm/libsql';
-import { createClient } from '@libsql/client';
+import { drizzle } from 'drizzle-orm/neon-http';
 import * as schema from '$lib/server/db/schema';
-import { DB_TOKEN, DB_URL } from '$env/static/private';
-import { DrizzleSQLiteAdapter } from '@lucia-auth/adapter-drizzle';
+import { DB_URL } from '$env/static/private';
+import { DrizzlePostgreSQLAdapter } from '@lucia-auth/adapter-drizzle';
+import { neon } from '@neondatabase/serverless';
 
-export const client = createClient({ url: DB_URL, authToken: DB_TOKEN });
+const client = neon(DB_URL);
 
 export const db = drizzle(client, { schema });
 
-export const adapter = new DrizzleSQLiteAdapter(db, schema.sessionsTable, schema.usersTable);
+export const adapter = new DrizzlePostgreSQLAdapter(db, schema.sessionsTable, schema.usersTable);

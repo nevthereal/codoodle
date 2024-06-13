@@ -1,16 +1,16 @@
-import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
 import { relations } from 'drizzle-orm';
+import { boolean, integer, pgTable, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 // users and auth
-export const usersTable = sqliteTable('users', {
-	id: text('id', { length: 15 }).primaryKey().notNull(),
+export const usersTable = pgTable('users', {
+	id: varchar('id', { length: 15 }).primaryKey().notNull(),
 	gitHubId: integer('github_id').notNull().unique(),
-	username: text('username', { length: 255 }).notNull().unique(),
-	admin: integer('admin', { mode: 'boolean' }).default(false),
-	joined: integer('joined_at', { mode: 'timestamp' })
+	username: varchar('username', { length: 255 }).notNull().unique(),
+	admin: boolean('admin').default(false),
+	joined: timestamp('joined_at')
 });
 
-export const sessionsTable = sqliteTable('sessions', {
+export const sessionsTable = pgTable('sessions', {
 	id: text('id').notNull().primaryKey(),
 	userId: text('user_id')
 		.notNull()
@@ -31,14 +31,14 @@ export const sessionRelation = relations(sessionsTable, ({ one }) => ({
 }));
 
 // posts
-export const postsTable = sqliteTable('posts', {
+export const postsTable = pgTable('posts', {
 	id: integer('id').primaryKey(),
 	authorId: text('author_id')
 		.notNull()
 		.references(() => usersTable.id),
-	title: text('title', { length: 255 }).notNull(),
-	body: text('body', { length: 255 }).notNull(),
-	createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull()
+	title: varchar('title', { length: 255 }).notNull(),
+	body: varchar('body', { length: 255 }).notNull(),
+	createdAt: timestamp('created_at').notNull()
 });
 
 export const postRelation = relations(postsTable, ({ one }) => ({
