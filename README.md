@@ -1,6 +1,6 @@
 # codoodle
 
-A SvelteKit social texting using Drizzle + Turso
+A SvelteKit social texting using Drizzle + Neon
 
 ## About this repository
 
@@ -12,7 +12,7 @@ This is actually one of my most exciting projects lately. I really want to put m
 - Tailwind
 - Skeleton UI
 - Drizzle ORM
-- Turso
+- Neon
 - dayjs
 - SvelteKit-Superforms
 - Lucia Auth
@@ -31,12 +31,3 @@ This is actually one of my most exciting projects lately. I really want to put m
 - Admin Page:
   - Inspect users and posts. delete both of them
   - User page
-
-## Test this out
-
-1. Clone this repository: `git clone https://github.com/nevthereal/codoodle.git`
-2. Install the deps: `bun i`
-3. Create a databse with the [Turso CLI](https://docs.turso.tech/reference/turso-cli)
-4. Create a `.env` file with the `.env.example` variables
-5. Pusg the db schema: `bun run migrate`
-6. Run `bun run dev`
