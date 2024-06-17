@@ -2,7 +2,6 @@ import { db } from '$lib/server/db/db';
 import { postsTable } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import type { RequestHandler } from './$types';
-import { fail } from 'assert';
 import { redirect } from '@sveltejs/kit';
 
 export const DELETE: RequestHandler = async ({ url, locals }) => {
@@ -31,8 +30,8 @@ export const DELETE: RequestHandler = async ({ url, locals }) => {
 	});
 
 	if (!post) {
-		return fail('Failed');
-	} else if (post.authorId != user?.id) {
+		return new Response('Post not found', { status: 400 });
+	} else if (post.authorId === user?.id) {
 		await db.delete(postsTable).where(eq(postsTable.id, postId));
 	} else if (user.admin) {
 		await db.delete(postsTable).where(eq(postsTable.id, postId));
