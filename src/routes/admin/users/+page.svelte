@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	export let data;
@@ -17,7 +18,7 @@
 				if (r) {
 					fetch(`/api/delete/user?id=${userId}`, {
 						method: 'DELETE'
-					}).then(() => location.reload());
+					}).then(async () => await invalidateAll());
 				}
 			},
 			buttonTextConfirm: 'Delete'

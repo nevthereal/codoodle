@@ -3,6 +3,7 @@
 	import { marked } from 'marked';
 	import fromNow from 'dayjs/plugin/relativeTime.js';
 	import dayjs from 'dayjs';
+	import { invalidateAll } from '$app/navigation';
 
 	dayjs.extend(fromNow);
 
@@ -37,8 +38,8 @@
 	};
 
 	const deletePost = async (postId: number) => {
-		await fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(() => {
-			location.reload();
+		await fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(async () => {
+			await invalidateAll();
 		});
 	};
 </script>

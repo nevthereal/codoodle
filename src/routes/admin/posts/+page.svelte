@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { marked } from 'marked';
 
@@ -15,8 +16,8 @@
 			body: 'Do you really want to delete this post?',
 			response: (r) => {
 				if (r) {
-					fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(() => {
-						location.reload();
+					fetch(`/api/delete/post?postId=${postId}`, { method: 'DELETE' }).then(async () => {
+						await invalidateAll();
 					});
 				}
 			},
