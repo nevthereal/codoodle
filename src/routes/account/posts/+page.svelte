@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Post from '$lib/components/Post.svelte';
 
-	export let data;
+	let { data } = $props();
 	const user = data.user;
 	const posts = data.posts;
-	let userId: string | null;
+	let userId: string | null = $state();
 	if (data.user) {
 		userId = user.id;
 	}

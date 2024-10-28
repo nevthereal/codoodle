@@ -5,7 +5,7 @@
 
 	dayjs.extend(fromNow);
 
-	export let data;
+	let { data } = $props();
 	export const user = data.user;
 </script>
 

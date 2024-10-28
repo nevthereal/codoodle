@@ -20,10 +20,14 @@
 		};
 	}
 
-	export let post: Post;
-	export let profileLink = true;
 
-	export let currentUserId: string | null;
+	interface Props {
+		post: Post;
+		profileLink?: boolean;
+		currentUserId: string | null;
+	}
+
+	let { post, profileLink = true, currentUserId }: Props = $props();
 
 	const modalStore = getModalStore();
 
@@ -65,7 +69,7 @@
 		</p>
 	</div>
 	{#if currentUserId === post.authorId}
-		<button on:click={() => modalStore.trigger(dM)} class="btn"
+		<button onclick={() => modalStore.trigger(dM)} class="btn"
 			><i class="fa-solid fa-trash text-2xl"></i></button
 		>
 	{/if}

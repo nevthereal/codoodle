@@ -2,7 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 
-	export let data;
+	let { data } = $props();
 
 	const users = data.users;
 	const currentUser = data.user;
@@ -44,7 +44,7 @@
 					<td>{user.username}</td>
 					<td
 						>{#if currentUser.id != user.id}
-							<button on:click={() => deleteUser(user.id)} class="btn"
+							<button onclick={() => deleteUser(user.id)} class="btn"
 								><i class="fa-solid fa-trash"></i></button
 							>
 						{/if}</td

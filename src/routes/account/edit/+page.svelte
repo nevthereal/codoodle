@@ -24,7 +24,11 @@
 		});
 	};
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const { form, enhance, errors, delayed } = superForm(data.form, {
 		resetForm: true,
 		delayMs: 0
@@ -49,7 +53,7 @@
 			{/if}</button
 		>
 	</form>
-	<button class="btn variant-ghost-error w-min" on:click={() => modalStore.trigger(dM)}>
+	<button class="btn variant-ghost-error w-min" onclick={() => modalStore.trigger(dM)}>
 		Delete your account
 	</button>
 </div>

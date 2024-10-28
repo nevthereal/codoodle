@@ -2,7 +2,11 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	const { form, enhance, errors, delayed, message } = superForm(data.form, {
 		resetForm: false,
@@ -22,7 +26,7 @@
 			placeholder="Content"
 			class="resize-none h-48 textarea"
 			bind:value={$form.body}
-		/>
+		></textarea>
 		{#if $errors.body}
 			<span class="text-error-500 font-semibold">{$errors.body}</span>
 		{/if}

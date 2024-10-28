@@ -1,3 +1,13 @@
+<script>
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
+</script>
+
 <svelte:head>
 	<title>Your Account</title>
 </svelte:head>
@@ -32,6 +42,6 @@
 		</ul>
 	</nav>
 	<main class="p-6">
-		<slot />
+		{@render children?.()}
 	</main>
 </div>

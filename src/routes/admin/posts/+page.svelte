@@ -3,7 +3,7 @@
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import { marked } from 'marked';
 
-	export let data;
+	let { data } = $props();
 
 	const posts = data.posts;
 
@@ -58,7 +58,7 @@
 						<td>{post.createdAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}</td
 						>
 						<td
-							><button on:click={() => deletePost(post.id)} class="btn"
+							><button onclick={() => deletePost(post.id)} class="btn"
 								><i class="fa-solid fa-trash"></i></button
 							></td
 						>

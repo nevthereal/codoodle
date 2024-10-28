@@ -2,9 +2,13 @@
 	import Post from '$lib/components/Post.svelte';
 	import type { PageData } from './$types.js';
 
-	export let data: PageData;
-	let userId: string | null;
-	let username: string | null;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+	let userId: string | null = $state();
+	let username: string | null = $state();
 	if (data.user) {
 		userId = data.user.id;
 		username = data.user.username;

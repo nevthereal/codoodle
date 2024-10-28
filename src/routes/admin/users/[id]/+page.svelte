@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { marked } from 'marked';
 
-	export let data;
+	let { data } = $props();
 	const user = data.qUser;
 	const posts = data.usersPosts;
 </script>

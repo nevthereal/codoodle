@@ -5,12 +5,16 @@
 	import { cn } from '$lib/utils';
 	import fromNow from 'dayjs/plugin/relativeTime.js';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 
 	dayjs.extend(fromNow);
 
 	const user = data.user;
-	let userId: string | null;
+	let userId: string | null = $state();
 	if (data.session) userId = data.session.userId;
 </script>
 

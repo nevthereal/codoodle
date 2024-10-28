@@ -1,3 +1,13 @@
+<script>
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
+</script>
+
 <svelte:head>
 	<title>Codoodle - Admin</title>
 	<meta name="robots" content="noindex" />
@@ -10,6 +20,6 @@
 		<a class="btn text-xl font-bold" href="/admin/posts">Posts</a>
 	</nav>
 	<main class="py-8">
-		<slot />
+		{@render children?.()}
 	</main>
 </div>
