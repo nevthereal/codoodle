@@ -25,7 +25,7 @@
 
 <AppShell>
 	{#snippet header()}
-	
+
 			<nav
 				class="p-6 flex justify-between items-center bg-surface-500 rounded-bl-container-token rounded-br-container-token"
 			>
@@ -36,13 +36,13 @@
 					<i class="fa-solid fa-user text-2xl"></i>
 				</a>
 			</nav>
-		
+
 	{/snippet}
 	<main class="p-8">
 		{@render children?.()}
 	</main>
 	{#snippet footer()}
-	
+
 			<footer
 				class="p-6 font-bold border-t-2 border-primary-500 rounded-tl-container-token rounded-tr-container-token"
 			>
@@ -62,9 +62,9 @@
 					</div>
 				</div>
 				<p class="text-center">
-					© 2024 <a href="https://github.com/nevthereal" target="_blank">Neville Brem</a>
+					© 2026 <a href="https://github.com/nevthereal" target="_blank">Neville Brem</a>
 				</p>
 			</footer>
-		
+
 	{/snippet}
 </AppShell>
